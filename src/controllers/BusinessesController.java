@@ -32,12 +32,12 @@ public class BusinessesController extends javax.servlet.http.HttpServlet {
         String action = request.getParameter("action");
 
         if(method.equals("GET")) {
-            // Index Action
+            /* Index Action
             if(action.equals("index")) {
                 List<Business> businesses = service.getAllBusiness();
                 request.setAttribute("businesses", businesses);
                 url = "listBusinesses.jsp";
-            }
+            }*/
             if(action.equals("show")) {
                 // int id = Integer.parseInt(request.getParameter("id"));
                 String ruc= request.getParameter("ruc");

@@ -4,12 +4,13 @@ import models.Business;
 import models.Category;
 import services.CgbService;
 
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
-
+@WebServlet(name = "CategoriesController",urlPatterns = "/category")
 public class CategoriesController extends HttpServlet {
 
     CgbService service;
@@ -34,12 +35,12 @@ public class CategoriesController extends HttpServlet {
         String action = request.getParameter("action");
 
         if(method.equals("GET")) {
-            // Index Action
+            /*
             if(action.equals("index")) {
                 List<Category> categories = service.getAllCategories();
                 request.setAttribute("categories", categories);
                 url = "listCategories.jsp";
-            }
+            }*/
             if(action.equals("show")) {
                 int id = Integer.parseInt(request.getParameter("id"));
                Category category=service.getCategoryById(id);
