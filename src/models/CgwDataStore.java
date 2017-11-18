@@ -194,10 +194,16 @@ public class CgwDataStore {
         return getCategoriesEntity().findByDescription(description);
     }
 
-    public boolean createNewCategory(Category category){
+    public Category createNewCategory(Category category){
         return getCategoriesEntity().createCategories(category);
     }
+    public Category createNewCategory(String description){
+        return getCategoriesEntity().createCategories(description);
+    }
 
+    public boolean updateCategory(int id,String category){
+        return getCategoriesEntity().updateCategory(id, category);
+    }
     public boolean removeCategory(Category category){
         return getCategoriesEntity().deleteCategory(category);
     }

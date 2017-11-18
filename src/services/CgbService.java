@@ -121,7 +121,11 @@ public class CgbService {
 
     public Category getCategoryByName(String name){ return getDataStore().findByDescription(name);}
 
-    public boolean createCategory(Category category){ return getDataStore().createNewCategory(category);}
+    public Category createCategory(Category category){ return getDataStore().createNewCategory(category);}
+
+    public Category createCategory(String description){ return getDataStore().createNewCategory(description);}
+
+    public boolean updateCategory(int id,String description){return getDataStore().updateCategory(id, description);}
 
     public boolean removeCategory(Category category){ return getDataStore().removeCategory(category);}
 
