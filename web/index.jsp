@@ -32,7 +32,7 @@
       <td><c:out value="${business.email}"/></td>
       <td>
         <a href="businesses?action=show&ruc=${business.ruc}">Informacion</a>
-        <a href="businesses?action=edit&ruc=${business.ruc}">Informacion</a>
+        <a href="businesses?action=edit&ruc=${business.ruc}">Editar</a>
 
       </td>
     </tr>
