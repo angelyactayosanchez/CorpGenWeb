@@ -154,16 +154,16 @@ public class CgwDataStore {
     }
 
 
-    public boolean createNewInventory(Inventory inventory){
-        return getInventoriesEntity().createNewInventory(inventory);
+    public Inventory createNewInventory(int current_stock, int initial_stock, int minimal_stock){
+        return getInventoriesEntity().createNewInventory(current_stock,initial_stock,minimal_stock);
     }
 
     public boolean removeInventory(Inventory inventory){
         return getInventoriesEntity().deleteInventory(inventory);
     }
 
-    public boolean updateActualStock(Inventory inventory){
-        return getInventoriesEntity().updateActualInventory(inventory);
+    public boolean updateAllInventory(int id, int current_stock, int initial_stock, int minimal_stock){
+        return getInventoriesEntity().updateInventory(id,current_stock,initial_stock,minimal_stock);
     }
 
 

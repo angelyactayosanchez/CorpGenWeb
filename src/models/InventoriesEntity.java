@@ -53,13 +53,16 @@ public class InventoriesEntity extends BaseEntity {
 
     /**DML**/
 
-    public boolean createNewInventory(Inventory inventory){
-        return executeUpdate(String.format("insert into '%s' (initial_stock,minimal_stock) values(%d,%d)",getTableName(), inventory.getInitial_stock(), inventory.getMinimal_stock()));
+    public Inventory createNewInventory(Inventory inventory){
+        return executeUpdate(String.format("insert into '%s' (initial_stock,minimal_stock) values(%d,%d)",getTableName(), inventory.getInitial_stock(), inventory.getMinimal_stock()))?inventory:null;
     }
-/*
-    public boolean createNewInventory(int current_stock, int initial_stock, int minimal_stock){
-        return createNewInventory(new Inventory(getMaxId(getTableName())+1,current_stock,initial_stock,minimal_stock));}
-*/
+
+    public Inventory createNewInventory(int current_stock, int initial_stock, int minimal_stock){
+        return createNewInventory(getMaxId(getTableName())+1,current_stock,initial_stock,minimal_stock);}
+
+    public Inventory createNewInventory(int id,int current_stock, int initial_stock, int minimal_stock){
+        return createNewInventory(new Inventory(id,current_stock,initial_stock,minimal_stock));}
+
     public boolean deleteInventory(Inventory inventory){
         return executeUpdate(String.format("delete from '%s' where id=%d",getTableName(), inventory.getId()));
     }

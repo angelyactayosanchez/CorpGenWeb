@@ -107,9 +107,11 @@ public class CgbService {
 
     public Inventory getInventoryById(int id){return getDataStore().findInventoryById(id);}
 
-    public boolean createInventory(Inventory inventory){ return getDataStore().createNewInventory(inventory);}
+    public Inventory createInventory(int current_stock, int initial_stock, int minimal_stock)
+    { return getDataStore().createNewInventory(current_stock,initial_stock,minimal_stock);}
 
-    public boolean updateInventoryStock(Inventory inventory){ return getDataStore().updateActualStock(inventory);}
+    public boolean updateInventoryStock(int id, int current_stock, int initial_stock, int minimal_stock)
+    { return getDataStore().updateAllInventory(id,current_stock,initial_stock,minimal_stock);}
 
     public boolean removeInventory(Inventory inventory){return getDataStore().removeInventory(inventory);}
 
