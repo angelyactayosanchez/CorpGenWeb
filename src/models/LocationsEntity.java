@@ -53,24 +53,24 @@ public class LocationsEntity extends BaseEntity {
     }
 */
     public String getMaxCapacity(Location location){
-        return String.valueOf(String.format("select max_capacity from '%s' where id=%d", getTableName(), location.getId()));
+        return String.valueOf(String.format("select max_capacity from %s where id=%d", getTableName(), location.getId()));
     }
 
     /**DML**/
 
     public boolean createLocation(Location location){
-        return executeUpdate(String.format("insert into '%s' (max_capacity,start_time,close_time,business_id,inventories_id,address) " +
+        return executeUpdate(String.format("insert into %s (max_capacity,start_time,close_time,business_id,inventories_id,address) " +
                 "values(%d,'%s','%s','%s',%d,'%s)",getTableName(), location.getMaxCapacity(), location.getStartTime(), location.getCloseTime(), location.getBusiness().getRuc(), location.getInventory().getId(), location.getAddress()));
     }
 
     public boolean updateActualCapacityLocations(Location location){
 
-        return executeUpdate(String.format("update '%s' set actual_capacity=%d where id=%d",getTableName(), location.getActualCapacity(), location.getId()));
+        return executeUpdate(String.format("update %s set actual_capacity=%d where id=%d",getTableName(), location.getActualCapacity(), location.getId()));
     }
 
     public boolean updateAddressLocations(Location location){
 
-        return executeUpdate(String.format("update '%s' set address='%s' where id=%d",getTableName(), location.getAddress(), location.getId()));
+        return executeUpdate(String.format("update %s set address='%s' where id=%d",getTableName(), location.getAddress(), location.getId()));
     }
 
     public boolean updateMaxCapacity(Location location){
