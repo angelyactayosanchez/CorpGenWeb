@@ -471,12 +471,12 @@ public class CgwDataStore {
         return getOrdersEntity().findByUpdater(id,getUsersEntity(),getStatusEntity());
     }
 
-    public boolean createNewOrder(Order order){
-        return getOrdersEntity().createNewOrder(order);
+    public Order createNewOrder( String state, String createdAt, User createdBy, String updatedAt, User updatedBy){
+        return getOrdersEntity().createNewOrder(state, createdAt, createdBy, updatedAt, updatedBy);
     }
 
-    public boolean removeOrder(Order order){
-        return getOrdersEntity().undoOrder(order);
+    public boolean removeOrder(int id,String state,String updatedAt,int updatedBy){
+        return getOrdersEntity().undoOrder(id, state, updatedAt, updatedBy);
     }
 
     public boolean commitOrder(Order order){

@@ -43,11 +43,12 @@ public class LocationsController extends HttpServlet {
             }
             if(action.equals("add")){
                 request.setAttribute("action","add");
+               
             }
 
         }
         if(method.equals("POST")){
-
+            
         }
         request.getRequestDispatcher(url).forward(request,response);
     }

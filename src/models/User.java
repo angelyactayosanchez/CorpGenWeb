@@ -31,6 +31,9 @@ public class User {
     }
 
 
+    public User(){
+
+    }
 
     public User(int id, String firstName, String lastName, String password, int gender, String address, String number_phone, String email, Status status, int createdBy, int updatedBy, String createdAt, String updatedAt, int manager) {
         this.id = id;

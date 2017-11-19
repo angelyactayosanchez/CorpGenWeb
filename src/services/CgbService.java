@@ -254,12 +254,12 @@ public class CgbService {
         return getDataStore().findByUpdaterOrder(id);
     }
 
-    public boolean createOrder(Order order){
-        return getDataStore().createNewOrder(order);
+    public Order createOrder( String state, String createdAt, User createdBy, String updatedAt, User updatedBy){
+        return getDataStore().createNewOrder(state, createdAt, createdBy, updatedAt, updatedBy);
     }
 
-    public boolean removeOrder(Order order){
-        return getDataStore().removeOrder(order);
+    public boolean removeOrder(int id,String state,String updatedAt,int updatedBy){
+        return getDataStore().removeOrder(id, state, updatedAt, updatedBy);
     }
 
     public boolean commitOrder(Order order){

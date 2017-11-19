@@ -49,18 +49,23 @@ public class OrdersEntity extends BaseEntity {
 
     /**DML**/
 
-    public boolean createNewOrder(Order order){
-        return executeUpdate(String.format("insert into '%s' (state,created_at,created_by,updated_at,updated_by" +
-                ") values('%s','%s',%d,'%s',%d",getTableName(), order.getState(), order.getCreatedAt(), order.getCreatedBy().getId(), order.getUpdatedAt(), order.getUpdatedBy().getId()));
+
+    public Order createNewOrder(Order order){
+        return executeUpdate(String.format("insert into %s (id,state,created_at,created_by,updated_at,updated_by" +
+                ") values('%s','%s',%d,'%s',%d",getTableName(), order.getState(), order.getCreatedAt(), order.getCreatedBy().getId(),
+                order.getUpdatedAt(), order.getUpdatedBy().getId()))?order:null;
     }
 
-    public boolean undoOrder(Order order){
-        return executeUpdate(String.format("update '%s' set state='%s',updated_at='%s',updated_by=%d where id=%d",getTableName(), order.getState()
-        , order.getUpdatedAt(), order.getUpdatedBy().getId(), order.getId()));
+    public Order createNewOrder(String state, String createdAt, User createdBy, String updatedAt, User updatedBy){
+        return createNewOrder(new Order(getMaxId(getTableName())+1,state,createdAt,createdBy,updatedAt,updatedBy));}
+
+    public boolean undoOrder(int id,String state,String updatedAt,int updatedBy){
+        return executeUpdate(String.format("update %s set state='%s',updated_at='%s',updated_by=%d where id=%d",getTableName()
+        , state,updatedAt,updatedBy,id));
     }
 
     public boolean committedOrder(Order order){
-        return executeUpdate(String.format("update '%s' set state='%s',updated_at='%s',updated_by=%d where id=%d",getTableName(), order.getState()
+        return executeUpdate(String.format("update %s set state='%s',updated_at='%s',updated_by=%d where id=%d",getTableName(), order.getState()
                 , order.getUpdatedAt(), order.getUpdatedBy().getId(), order.getId()));
     }
 }
