@@ -19,13 +19,13 @@ public class StatusController extends HttpServlet {
        service=new CgbService();
        url="";
    }
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+            processRequest("GET",request,response);
     }
 
 
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        processRequest("POST",request,response);
     }
 
 

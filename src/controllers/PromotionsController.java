@@ -24,13 +24,13 @@ public class PromotionsController extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-            processRequest("POST",req,resp);
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+            processRequest("POST",request,response);
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        processRequest("GET",req,resp);
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        processRequest("GET",request,response);
     }
 
     private void processRequest(String method, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

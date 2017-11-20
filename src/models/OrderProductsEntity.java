@@ -51,16 +51,20 @@ public class OrderProductsEntity extends BaseEntity {
 
 
     public boolean createOrderProducts(OrderProduct orderProduct){
-        return executeUpdate(String.format("insert into '%s'(quantity,product_id,product_price,orders_id)" +
-                " values(%d,%d,%d,%d)",getTableName(), orderProduct.getQuantity(), orderProduct.getProduct().getId(), orderProduct.getPrice(), orderProduct.getOrder().getId()));
+        return executeUpdate(String.format("insert into %s(quantity,product_id,product_price,orders_id)" +
+                " values(%d,%d,%.2f,%d)",getTableName(), orderProduct.getQuantity()
+                , orderProduct.getProduct().getId(),  orderProduct.getQuantity()*orderProduct.getProduct().getPrice()
+                , orderProduct.getOrder().getId()));
     }
 
     public boolean deleteOrderProducts(OrderProduct orderProduct){
-        return executeUpdate(String.format("delete from '%s' where id=%d",getTableName(), orderProduct.getId()));
+        return executeUpdate(String.format("delete from %s where id=%d",getTableName(), orderProduct.getId()));
     }
 
     public boolean updateQuantityOrderProducts(OrderProduct orderProduct){
-        return executeUpdate(String.format("update'%s' set quantity=%d where id=%d",getTableName(), orderProduct.getQuantity(), orderProduct.getId()));
+        return executeUpdate(String.format("update%s set quantity=%d ,product_price=%.2f where id=%d"
+                ,getTableName(), orderProduct.getQuantity()
+                ,orderProduct.getQuantity()*orderProduct.getProduct().getPrice(), orderProduct.getId()));
     }
 
 }

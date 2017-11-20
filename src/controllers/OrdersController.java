@@ -16,6 +16,13 @@ public class OrdersController extends HttpServlet {
 
     CgbService service;
     String url="";
+
+    public OrdersController() {
+        super();
+        service=new CgbService();
+        url="";
+    }
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
             processRequest("GET",req,resp);

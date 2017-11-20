@@ -15,8 +15,14 @@ import java.io.IOException;
 
 @WebServlet(name = "IOController",urlPatterns = "/ip")
 public class IOController extends HttpServlet {
-    CgbService service=new CgbService();
+    CgbService service;
     String url;
+
+    public IOController() {
+        super();
+        service=new CgbService();
+        url="";
+    }
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         processRequest("POST",req,resp);

@@ -18,6 +18,12 @@ public class LocationsController extends HttpServlet {
         String url;
         public static String  LOCATION_INDEX_URI="listLocations.jsp";
 
+    public LocationsController() {
+        super();
+        service=new CgbService();
+        url="";
+    }
+
 
     protected void doPost(javax.servlet.http.HttpServletRequest request, HttpServletResponse  response) throws javax.servlet.ServletException, IOException {
         processRequest("POST", request, response);
