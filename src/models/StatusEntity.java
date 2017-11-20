@@ -51,14 +51,14 @@ public class StatusEntity extends BaseEntity {
                 +status.getDescription()+")";
         return executeUpdate(sql);
     }
-
+    /*
     public boolean create(int id, String type, String description, User createdBy, String createAt, User updatedBy, String updatedAt){
         return create(new Status(id,type,description));
     }
-
+*/
     public boolean updateStatusType(Status status){
         return executeUpdate(String.
-                format("update '%s' set type = '%s' , description =  '%s' where id=%d",
+                format("update %s set type = '%s' , description =  '%s' where id=%d",
                 getTableName(),status.getType(),status.getDescription(),status.getId()));
     }
 

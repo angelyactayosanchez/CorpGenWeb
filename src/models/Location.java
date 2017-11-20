@@ -58,40 +58,45 @@ public class Location {
         return id;
     }
 
-    public void setId(int id) {
+    public Location setId(int id) {
         this.id = id;
+        return this;
     }
 
     public int getActualCapacity() {
         return actualCapacity;
     }
 
-    public void setActualCapacity(int actualCapacity) {
+    public Location setActualCapacity(int actualCapacity) {
         this.actualCapacity = actualCapacity;
+        return this;
     }
 
     public int getMaxCapacity() {
         return maxCapacity;
     }
 
-    public void setMaxCapacity(int maxCapacity) {
+    public Location setMaxCapacity(int maxCapacity) {
         this.maxCapacity = maxCapacity;
+        return this;
     }
 
     public String getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(String startTime) {
+    public Location setStartTime(String startTime) {
         this.startTime = startTime;
+        return this;
     }
 
     public String getCloseTime() {
         return closeTime;
     }
 
-    public void setCloseTime(String closeTime) {
+    public Location setCloseTime(String closeTime) {
         this.closeTime = closeTime;
+        return this;
     }
 
     public Business getBusiness() {

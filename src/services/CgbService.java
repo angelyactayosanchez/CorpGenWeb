@@ -57,10 +57,14 @@ public class CgbService {
     }
 
     public Business getBusinessByName(String name){return getDataStore().findByNameBusiness(name); }
-
+    /*
     public Business createBusiness(String ruc, String name, String address, String phone, String email){
         return getDataStore().createBusiness(ruc, name, address, phone, email);
+    }*/
+    public boolean createBusiness(Business business){
+        return getDataStore().createBusiness(business);
     }
+
 
     public boolean deleteBusiness(String ruc){
         return getDataStore().deleteBusiness(ruc);
@@ -79,7 +83,7 @@ public class CgbService {
 
     public Status getStatusByType(String type){return getDataStore().findByType(type);}
 
-    public boolean changeStatus(Status status){ return dataStore.updateStatusType(status);}
+    public boolean changeStatus(Status status){ return getDataStore().updateStatusType(status);}
 
     /**Location**/
 

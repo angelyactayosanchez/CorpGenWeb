@@ -4,16 +4,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Inventory {
-    int id;
-    int current_stock;
-    int initial_stock;
-    int minimal_stock;
+    private int id;
+    private int current_stock;
+    private int initial_stock;
+    private int minimal_stock;
 
     public Inventory(int id, int current_stock, int initial_stock, int minimal_stock) {
-        this.id = id;
-        this.current_stock = current_stock;
-        this.initial_stock = initial_stock;
-        this.minimal_stock = minimal_stock;
+        this.setId(id);
+        this.setCurrent_stock(current_stock);
+        this.setInitial_stock(initial_stock);
+        this.setMinimal_stock(minimal_stock);
 
     }
 

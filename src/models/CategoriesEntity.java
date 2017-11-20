@@ -37,6 +37,7 @@ public class CategoriesEntity extends BaseEntity {
         return findByCriteria(String.format(" where id=%d",id)).get(0);
     }
 
+
     public Category findByDescription(String description){
         return findByCriteria(String.format(" where description='%s'",description)).get(0);
     }

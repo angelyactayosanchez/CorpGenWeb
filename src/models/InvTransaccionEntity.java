@@ -55,19 +55,19 @@ public class InvTransaccionEntity extends BaseEntity {
     /**DML**/
 
     public boolean createInvTransaccion(InventoriesTransaccion inventoriesTransaccion){
-        return executeUpdate(String.format("insert into '%s' (state,created_at,created_by,updated_at,updated_by)" +
+        return executeUpdate(String.format("insert into %s (state,created_at,created_by,updated_at,updated_by)" +
                 " values('%s','%s',%d'%s',%d)",getTableName(),inventoriesTransaccion.getStatus(),inventoriesTransaccion.getCreatedAt()
                     ,inventoriesTransaccion.getCreatedBy().getId(),inventoriesTransaccion.getUpdatedAt(),inventoriesTransaccion.getUpdatedBy().getId()));
     }
 
     public boolean updateInvTransaccion(InventoriesTransaccion inventoriesTransaccion){
-        return executeUpdate(String.format("update '%s' set state='%s',updated_at='%s', updated_by=%d where id=%d",getTableName()
+        return executeUpdate(String.format("update %s set state='%s',updated_at='%s', updated_by=%d where id=%d",getTableName()
                 ,inventoriesTransaccion.getStatus(),inventoriesTransaccion.getUpdatedAt(),inventoriesTransaccion.getUpdatedBy().getId(),inventoriesTransaccion.getId()));
     }
 
 
     public boolean deleteInvTransaccion(InventoriesTransaccion inventoriesTransaccion){
-        return executeUpdate(String.format("delete from '%s' where id=%d",getTableName(),inventoriesTransaccion.getId()));
+        return executeUpdate(String.format("delete from %s where id=%d",getTableName(),inventoriesTransaccion.getId()));
     }
 
 

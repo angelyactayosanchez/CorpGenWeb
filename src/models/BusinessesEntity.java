@@ -60,7 +60,7 @@ public class BusinessesEntity extends BaseEntity {
     }
 
     /**DML**/
-
+    /*
     public Business createBusiness(Business business){
         return executeUpdate(String.format("INSERT INTO %s(ruc,name,address,phone,email) VALUES('%s','%s','%s','%s','%s')"
                 ,getTableName(),business.getRuc(),business.getName(),business.getAddress(),business.getPhone(),business.getEmail()))?business:null;
@@ -68,6 +68,14 @@ public class BusinessesEntity extends BaseEntity {
 
     public Business createBusiness(String ruc, String name, String address, String phone, String email){
         return createBusiness(new Business(ruc,name,address,phone,email));}
+    */
+    public boolean createBusiness(Business business){
+        return executeUpdate(String.format("INSERT INTO %s(ruc,name,address,phone,email) VALUES('%s','%s','%s','%s','%s')"
+                ,getTableName(),business.getRuc(),business.getName(),business.getAddress(),business.getPhone(),business.getEmail()));
+    }
+
+
+
 
     public boolean updateBusiness(Business business){
        return updateBusiness(business.getRuc(),business.getName(),business.getAddress(),business.getPhone(),business.getEmail());}

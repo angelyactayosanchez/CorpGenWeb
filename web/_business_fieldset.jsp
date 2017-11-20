@@ -13,4 +13,5 @@
 <label for="email">Email</label>
 <input type="text" name="email" id="email" value="${business.email}"/>
 
-<input type="submit"/>
+<input type="hidden" value="index" name="action"/>
+<button type="submit" class="btn btn-primary">Guardar Cambios</button>

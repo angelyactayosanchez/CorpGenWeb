@@ -61,11 +61,16 @@ public class CgwDataStore {
     public Business findByNameBusiness(String name){
         return getBusinessesEntity().findByName(name);
     }
-
+    /*
     public Business createBusiness(String ruc, String name, String address, String phone, String email){
         return connection==null?null:
                 getBusinessesEntity().createBusiness(ruc, name, address, phone, email);
+    }*/
+    public boolean createBusiness(Business business){
+        return connection==null?false:
+                getBusinessesEntity().createBusiness(business);
     }
+
 
     public boolean deleteBusiness(String  ruc){
         return getBusinessesEntity().deleteBusiness(ruc);
@@ -282,6 +287,7 @@ public class CgwDataStore {
     public Status findByType(String type){
         return getStatusEntity().finByStatusType(type);
     }
+
 
     public boolean updateStatusType(Status status){
         return getStatusEntity().updateStatusType(status);

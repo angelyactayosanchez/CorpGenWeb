@@ -23,6 +23,9 @@ public class InventoryOperation {
         this.inventoriesTransaccion = inventoriesTransaccion;
     }
 
+    public InventoryOperation() {
+    }
+
     public int getId() {
         return id;
     }

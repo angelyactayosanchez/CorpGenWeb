@@ -18,12 +18,12 @@ public class OrdersController extends HttpServlet {
     String url="";
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+            processRequest("GET",req,resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        processRequest("POST",req,resp);
     }
 
 

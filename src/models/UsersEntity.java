@@ -89,7 +89,7 @@ public class UsersEntity extends BaseEntity {
 
 
     public boolean createNormalUsers(User user){
-        return executeUpdate(String.format("insert into '%s' (" +
+        return executeUpdate(String.format("insert into %s (" +
                 "firstName,lastName,password,gender,address,number_phone,email,status_id,created_at,created_by,updated_at,updated_by)" +
                 " values('%s','%s','%s',%d,'%s','%s','%s',%d,'%s',%d,'%s',%d)",
                 user.getFirstName(), user.getLastName(), user.getPassword(), user.getGender(), user.getAddress(),
@@ -97,8 +97,8 @@ public class UsersEntity extends BaseEntity {
     }
 
     public boolean updateAttributesUser(User user){
-            return executeUpdate(String.format("update '%s' set firstName='%s',lastName='%s'" +
-                    " ,gender=%d,address='%s',number_phone='%s' where id=%d",getTableName(),
+            return executeUpdate(String.format("update %s set firstName='%s',lastName='%s'" +
+                    " ,password='%s' ,gender=%d,address='%s',number_phone='%s' where id=%d",getTableName(),
                     user.getFirstName(), user.getLastName(), user.getGender(), user.getAddress(), user.getNumber_phone(), user.getId()));
 
     }
@@ -108,11 +108,11 @@ public class UsersEntity extends BaseEntity {
     }
 */
     public boolean changeStatusUser(User user){
-        return executeUpdate(String.format("update '%s' set status=%d where id=%d",getTableName(), user.getStatus().getId(), user.getId()));
+        return executeUpdate(String.format("update %s set status=%d where id=%d",getTableName(), user.getStatus().getId(), user.getId()));
     }
 
     public boolean changePermissionsUser(User user){
-        return executeUpdate(String.format("update  '%s' set manager=%d where id=%d",getTableName(), user.getManager()));
+        return executeUpdate(String.format("update  %s set manager=%d where id=%d",getTableName(), user.getManager()));
     }
 
 
