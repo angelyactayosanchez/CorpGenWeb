@@ -26,6 +26,10 @@ public class BaseEntity {
         return this;
     }
 
+    public Connection closesConnection(){
+        connection= null;
+        return  connection;
+    }
     public String getTableName() {
         return tableName;
     }

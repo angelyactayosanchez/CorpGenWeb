@@ -162,6 +162,7 @@ public class CgbService {
 
     public User getUserByFirstName(String firstName){return getDataStore().findByFirstName(firstName);}
 
+    public User getUserByValidation(String email,String password){return getDataStore().findByEmainPass(email,password);}
     public User getUserByLastName(String lastName){
         return getDataStore().findByLastName(lastName);
     }

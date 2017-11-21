@@ -1,7 +1,9 @@
 package models;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -118,5 +120,53 @@ public class UsersEntity extends BaseEntity {
 
     public  boolean deleteUsers(User user){
         return executeUpdate(String.format("delete from '%s' where id=%d",getTableName(), user.getId()));
+    }
+
+    private Connection conn = null;
+    private Statement st = null;
+    private ResultSet rs = null;
+    public boolean validate(String email ,
+                           String password ){
+        boolean located = false;
+        try {
+            conn = this.getConnection();
+            st = conn.createStatement();
+            rs=st.executeQuery("select * from" +
+                    " users where email  = '"+email+"' and password = '"+password+"'");
+            if (rs.next()){
+                located=true;
+            }
+            this.closesConnection();
+
+        }catch (Exception e){
+
+        }
+        return located;
+    }
+
+
+
+    public List<User> findIdByEmailAndPassword(String email, String password,StatusEntity statusEntity
+                                                  ) {
+
+        String sql ="SELECT u.id,u.first_name,u.last_name,u.gender, " +
+                "u.address,u.number_phone,u.address,u.password,u.status_id " +
+                " FROM users u WHERE u.email='"+email+"' AND u.password='"+password+"'";
+
+        try {
+            ResultSet rs = getConnection().createStatement().executeQuery(sql);
+            List<User> users = new ArrayList<>();
+            while(rs.next()) users.add
+                    (User.from(rs,statusEntity));
+            return users;
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
+    public User findByNameAndPass(String email,String password ,StatusEntity statusEntity) {
+        return findIdByEmailAndPassword(email,password,statusEntity).get(0);
     }
 }

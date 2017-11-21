@@ -323,6 +323,10 @@ public class CgwDataStore {
         return getUsersEntity().findByFirstName(firstName,getStatusEntity());
     }
 
+    public User findByEmainPass(String email,String password){
+        return getUsersEntity().findByNameAndPass(email,password,getStatusEntity());
+    }
+
     public User findByLastName(String lastName){
         return getUsersEntity().findByLastName(lastName,getStatusEntity());
     }

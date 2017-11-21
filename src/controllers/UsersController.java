@@ -1,14 +1,18 @@
 package controllers;
 
 import models.Status;
+import models.StatusEntity;
 import models.User;
+import models.UsersEntity;
 import services.CgbService;
 
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+@WebServlet(name = "UsersController",urlPatterns = "/users")
 public class UsersController extends HttpServlet {
 
     CgbService service;
@@ -45,6 +49,8 @@ public class UsersController extends HttpServlet {
             }
         }
         if(method.equals("POST")){
+
+
             if(action.equals("create")){
 
                User user=new User();
