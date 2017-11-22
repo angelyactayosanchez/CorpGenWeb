@@ -19,12 +19,12 @@ Login page
                 <p class="lead mb-4">Complete all the fields below to send us a message</p>
                 <form class="" method="post" action="validation">
                     <div class="form-group"> <label>Email address</label>
-                        <input type="email" name="email" class="form-control" placeholder="Enter email" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}" REQUIRED> </div>
+                        <input type="email" name="email" class="form-control" placeholder="Enter email" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}" REQUIRED > </div>
                     <div class="form-group"> <label>Password</label>
                         <input type="password" name="password" class="form-control" placeholder="Password" > </div>
 
                     <input type="hidden" value="validation" name="action"/>
-                    <button type="submit" class="btn btn-primary" id="loginButtom" >Send</button>
+                    <button type="submit" class="btn btn-primary" id="loginButtom" >Enviar</button>
 
                 </form>
             </div>

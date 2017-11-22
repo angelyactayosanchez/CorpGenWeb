@@ -17,9 +17,11 @@ import java.io.IOException;
 @WebServlet(name = "ValidationController",urlPatterns = "/validation")
 public class ValidationController extends HttpServlet {
     CgbService service=new CgbService();
-    public static String LOGINSUCESS="/HomeUser.jsp";
+    String url="";
+    public static String LOGINSUCESS="homeUser.jsp";
     public static String WELCOME_USER="WelcomeUser.jsp";
-    public static String INDEX="/index.jsp";
+    public static String INDEX="index.jsp";
+    public static String LOGIN="login.jsp";
 
 
 
@@ -29,35 +31,56 @@ public class ValidationController extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-            String email=new String(request.getParameter("email").getBytes("ISO-8859-1"),"UTF-8");
-            String user="";
-            String password=new String( request.getParameter("password").getBytes("ISO-8859-1"),"UTF-8");
+         String email=new String(request.getParameter("email").getBytes("ISO-8859-1"),"UTF-8");
+            String user=email;
+            String password=new String(request.getParameter("password").getBytes("ISO-8859-1"),"UTF-8");
             UsersEntity u=new UsersEntity();
             String validation="";
             if(!request.getParameter("email").equalsIgnoreCase("") && !request.getParameter("password").equalsIgnoreCase("")){
-                try {
+
                     request.setAttribute("validation",validation);
                     User user1=service.getUserByValidation(email,password);
                     request.setAttribute("user",user1);
-                    RequestDispatcher dispatcher=request.getRequestDispatcher(WELCOME_USER);
+                    RequestDispatcher dispatcher=request.getRequestDispatcher("homeUser.jsp");
                         dispatcher.forward(request,response);
                     log("Funciona v:");
-                }catch (Exception e){
 
-                    log("Datos incorrectos");
-                    validation="Incorrecto";
-                    request.setAttribute("validation",validation);
-                    RequestDispatcher dispatcher=request.getRequestDispatcher("");
-                    dispatcher.forward(request,response);
-
-
-                }
             }else{
                 if (u.validate(user,password)==false){
                     request.setAttribute("validation",validation);
 
                     log("No hay datos");
                 }
+            }/*
+        String email=request.getParameter("email");
+        String user="";
+        String password=request.getParameter("password");
+        UsersEntity u=new UsersEntity();
+        StatusEntity statusEntity=new StatusEntity();
+        String validation="";
+        if(!request.getParameter("email").equalsIgnoreCase("") && !request.getParameter("password").equalsIgnoreCase("")){
+            try {
+                request.setAttribute("validation",validation);
+                User userlog=service.getUserByValidation(email,password);
+                request.setAttribute("userlog",userlog);
+                url="homeUser.jsp";
+                log("Funciona v:");
+            }catch (Exception e){
+
+                log("Datos incorrectos");
+                validation="Incorrecto";
+                request.setAttribute("validation",validation);
+                url="login.jsp";
+
             }
+        }else if (u.validate(user,password)==false){
+            request.setAttribute("validation",validation);
+            url="login.jsp";
+            log("No hay datos");
+        }
+
+        request.getRequestDispatcher(url).forward(request,response);
+     }/**/
     }
 }
+

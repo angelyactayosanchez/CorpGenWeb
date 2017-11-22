@@ -3,45 +3,6 @@ Index principal
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-<%--
-
-<html>
-  <head>
-    <title>$Title$</title>
-  </head>
-  <body>
-  <jsp:useBean id="service" class="services.CgbService"/>
-  <p><a href="businesses?action=index">List Business</a> </p>
-
-  <table border="3">
-    <tr>
-      <th>ruc</th>
-      <th>name</th>
-      <th>address</th>
-      <th>phone</th>
-      <th>email</th>
-    </tr>
-    <c:forEach var="business" items="${service.allBusiness}">
-    <tr>
-      <td><c:out value="${business.ruc}"/></td>
-      <td><c:out value="${business.name}"/> </td>
-      <td><c:out value="${business.address}"/></td>
-      <td><c:out value="${business.phone}"/></td>
-      <td><c:out value="${business.email}"/></td>
-      <td>
-        <a href="businesses?action=show&ruc=${business.ruc}">Informacion</a>
-        <a href="businesses?action=edit&ruc=${business.ruc}">Editar</a>
-
-      </td>
-    </tr>
-    </c:forEach>
-
-
-  </body>
-</html>
---%>
-<%--<!DOCTYPE html>--%>
 <html>
 
 <head>
@@ -65,7 +26,7 @@ Index principal
         </li>
       </ul>
       <a class="btn navbar-btn btn-primary ml-2 text-white" id="new" href="testNew.jsp"><i class="fa d-inline fa-lg fa-user-circle-o"></i>Sing up</a>
-      <a class="btn navbar-btn btn-primary ml-2 text-white" id="login" href="login.jsp"><i class="fa d-inline fa-lg fa-user-circle-o"></i> Sign in</a>
+      <a class="btn navbar-btn btn-primary ml-2 text-white" id="login" href="login.jsp"><i class="fa d-inline fa-lg fa-user-circle-o"></i>Iniciar Sesion</a>
     </div>
   </div>
 </nav>
@@ -75,8 +36,8 @@ Index principal
       <div class="col-md-12 text-white">
         <h1 class="display-3 mb-4">Pos no se v_v</h1>
         <p class="lead mb-5">Co</p>
-        <a href="listBusinesses.jsp" class="btn btn-lg mx-1 btn-dark" id="locales-buttom">Ver locales</a>
-        <a href="listProducts.jsp" class="btn btn-lg mx-1 btn-light border border-secondary" id="product-buttom">Ver productos</a>
+        <a href="#" class="btn btn-lg mx-1 btn-dark" id="locales-buttom">Ver locales</a>
+        <a href="#" class="btn btn-lg mx-1 btn-light border border-secondary" id="product-buttom">Ver productos</a>
       </div>
     </div>
   </div>

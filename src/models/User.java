@@ -51,6 +51,18 @@ public class User {
         this.updatedAt = updatedAt;
     }
 
+    public User(int id, String firstName, String lastName, String password, int gender, String address, String number_phone, String email, Status status) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.password = password;
+        this.gender = gender;
+        this.address = address;
+        this.number_phone = number_phone;
+        this.email = email;
+        this.status = status;
+    }
+
     public User(int id, String first_name, String last_name, String password, int gender, String number_phone, String email, Status status_id, String created_at, int created_by, String updated_by, int updatedBy, int manager) {
     }
 
@@ -72,6 +84,28 @@ public class User {
                     .setNumber_phone(rs.getString("number_phone"))
                     .setEmail(rs.getString("email"))
                     .setStatus(statusEntity.findByIdStatus(rs.getInt("status_id")));
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+
+    }
+
+
+    public static User from(ResultSet rs, StatusEntity statusEntity){
+
+        try {
+            return new User(rs.getInt("id"),
+                    rs.getString("first_name"),
+                    rs.getString("last_name"),
+                    rs.getString("password"),
+                    rs.getInt("gender"),
+                    rs.getString("address"),
+                    rs.getString("number_phone"),
+                    rs.getString("email"),
+                     statusEntity.findByIdStatus(rs.getInt("status_id")));
 
         } catch (SQLException e) {
             e.printStackTrace();

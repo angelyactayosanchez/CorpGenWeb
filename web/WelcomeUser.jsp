@@ -115,7 +115,7 @@
                     <a class="nav-link" href="#">Inicio</a>
                 </li>
                 <li class="nav-item" id="Locations">
-                    <a class="nav-link" href=<jsp:include page="PanelLocations.jsp"/> >Locales</a>
+                    <a class="nav-link" href="PanelLocations.jsp">Locales</a>
                 </li>
                 <li class="nav-item" id="Products">
                     <a class="nav-link" href="#">Productos</a>

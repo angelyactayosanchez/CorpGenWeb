@@ -13,6 +13,7 @@
     <title>Login success</title>
 </head>
 <body>
+Otra vez lo mismo
     <jsp:include page="WelcomeUser.jsp"/>
 </body>
 </html>
