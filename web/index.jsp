@@ -1,9 +1,5 @@
 <%--
-  Created by IntelliJ IDEA.
-  User: Escritorio-Pc
-  Date: 16/11/2017
-  Time: 22:47
-  To change this template use File | Settings | File Templates.
+Index principal
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>

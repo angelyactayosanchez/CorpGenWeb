@@ -1,9 +1,5 @@
 <%--
-  Created by IntelliJ IDEA.
-  User: root
-  Date: 20/11/17
-  Time: 22:25
-  To change this template use File | Settings | File Templates.
+Login page
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>

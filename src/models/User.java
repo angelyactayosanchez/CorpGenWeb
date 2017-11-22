@@ -58,23 +58,21 @@ public class User {
             return getId()==getManager() ? getManager() : getId();
         }
 
-    public static User from(ResultSet rs, StatusEntity statusEntity){
+
+    public static User from2(ResultSet rs, StatusEntity statusEntity){
 
         try {
-            return new User(
-                    rs.getInt("id"),
-                    rs.getString("first_name"),
-                    rs.getString("last_name"),
-                    rs.getString("password"),
-                    rs.getInt("gender"),
-                    rs.getString("number_phone"),
-                    rs.getString("email"),
-                    statusEntity.findByIdStatus(rs.getInt("status_id")),
-                    rs.getString("created_at"),
-                    rs.getInt("created_by"),
-                    rs.getString("updated_by"),
-                    rs.getInt("updated_by"),
-                    rs.getInt("manager"));
+            return (new User())
+                    .setId(rs.getInt("id"))
+                    .setFirstName(rs.getString("first_name"))
+                    .setLastName(rs.getString("last_name"))
+                    .setPassword(rs.getString("password"))
+                    .setGender(rs.getInt("gender"))
+                    .setAddress(rs.getString("address"))
+                    .setNumber_phone(rs.getString("number_phone"))
+                    .setEmail(rs.getString("email"))
+                    .setStatus(statusEntity.findByIdStatus(rs.getInt("status_id")));
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
