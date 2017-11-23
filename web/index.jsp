@@ -25,7 +25,7 @@ Index principal
           <a class="nav-link active" href="info.jsp"><i class="fa d-inline fa-lg fa-info"></i>Acerca de</a>
         </li>
       </ul>
-      <a class="btn navbar-btn btn-primary ml-2 text-white" id="new" href="testNew.jsp"><i class="fa d-inline fa-lg fa-user-circle-o"></i>Sing up</a>
+      <a class="btn navbar-btn btn-primary ml-2 text-white" id="new" href="users?action=new"><i class="fa d-inline fa-lg fa-user-circle-o"></i>Crear un cuenta nueva</a>
       <a class="btn navbar-btn btn-primary ml-2 text-white" id="login" href="login.jsp"><i class="fa d-inline fa-lg fa-user-circle-o"></i>Iniciar Sesion</a>
     </div>
   </div>

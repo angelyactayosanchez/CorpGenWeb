@@ -23,37 +23,35 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1 class="display-2" id="user1"> Bienvenido : <c:out value="${user.firstName}"/></h1>
+                <h1 class="display-1" id="user1"  > Bienvenido</h1>
             </div>
         </div>
         <div class="row">
             <div class="align-self-center p-5 col-md-6">
                 <h1 class="mb-4">¿En busca de donde divertirte?</h1>
-                <p class="mb-5">Corpgen te facilita la búsqueda de los mejores locales noctures, para que te diviertas sin preocupaciones</p>
-                <a class="btn btn-lg btn-outline-light" href="PanelLocations.jsp" id="localesbuttom" type="">Ver Locales
+                <p class="mb-5">Corpgen te facilita la búsqueda de los mejores neogocios nocturnos, para que te diviertas sin preocupaciones</p>
+                <a class="btn btn-lg btn-outline-light" href="businesses?action=index&userID=${user.id}" id="localesbuttom" type="">Ver negocios
                     <br> </a>
             </div>
             <div class="col-md-6 p-0">
-                <div id="carousel1" class="carousel slide" data-ride="carousel">
+                <div id="carousel1" class="carousel slide" data-ride="carousel" data-interval="3500">
                     <div class="carousel-inner" role="listbox">
                         <div class="carousel-item">
-                            <img src="https://pingendo.github.io/templates/sections/assets/gallery_restaurant_1.jpg" atl="first slide" class="d-block img-fluid w-100">
+                            <img src="images/discoteca1.jpg.jpg" atl="first slide" class="d-block img-fluid w-100">
                             <div class="carousel-caption">
-                                <h3>Dining room</h3>
-                                <p>Good architecture, better food</p>
+
                             </div>
                         </div>
                         <div class="carousel-item">
-                            <img class="d-block img-fluid w-100" src="https://pingendo.github.io/templates/sections/assets/gallery_restaurant_2.jpg" data-holder-rendered="true">
+                            <img class="d-block img-fluid w-100" src="images/discoteca2.jpg" data-holder-rendered="true">
                             <div class="carousel-caption">
-                                <h3>Cigar room</h3>
-                                <p>Enjoy our fine selection</p>
+
                             </div>
                         </div>
                         <div class="carousel-item active" id="carouselLocations">
                             <img class="d-block img-fluid w-100" src="https://pingendo.github.io/templates/sections/assets/gallery_restaurant_3.jpg" data-holder-rendered="true">
                             <div class="carousel-caption">
-                                <h3>Relax area</h3>
+
                                 <p>Take the time to chill</p>
                             </div>
                         </div>
@@ -69,27 +67,24 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6 p-0">
-                <div id="carousel1" class="carousel slide" data-ride="carousel">
+                <div id="carousel2" class="carousel slide" data-ride="carousel" data-interval="3500">
                     <div class="carousel-inner" role="listbox">
                         <div class="carousel-item">
                             <img src="https://pingendo.github.io/templates/sections/assets/gallery_restaurant_1.jpg" atl="first slide" class="d-block img-fluid w-100">
                             <div class="carousel-caption">
-                                <h3>Dining room</h3>
-                                <p>Good architecture, better food</p>
+
                             </div>
                         </div>
                         <div class="carousel-item active carousel-item-left">
                             <img class="d-block img-fluid w-100" src="https://pingendo.github.io/templates/sections/assets/gallery_restaurant_2.jpg" data-holder-rendered="true">
                             <div class="carousel-caption">
-                                <h3>Cigar room</h3>
-                                <p>Enjoy our fine selection</p>
+
                             </div>
                         </div>
                         <div class="carousel-item carousel-item-next carousel-item-left" id="carouselProducts">
                             <img class="d-block img-fluid w-100" src="https://pingendo.github.io/templates/sections/assets/gallery_restaurant_3.jpg" data-holder-rendered="true">
                             <div class="carousel-caption">
-                                <h3>Relax area</h3>
-                                <p>Take the time to chill</p>
+
                             </div>
                         </div>
                     </div>
@@ -99,8 +94,8 @@
             </div>
             <div class="align-self-center p-5 col-md-6">
                 <h1 class="mb-4">¿O buscas los mejores productos v: ?</h1>
-                <p class="mb-5">Get a fluid web page working on all devices with the Bootstrap 4 grid system.&nbsp; Responsive design made intuitive and effective with Pingendo.</p>
-                <a class="btn btn-lg btn-outline-light" href="#" id="productsButtom">Ver productos</a>
+                <p class="mb-5">Para no parar hasta el amanecer v:.&nbsp; No mentira :v .</p>
+                <a class="btn btn-lg btn-outline-light" href="product?action=index" id="productsButtom">Ver productos</a>
             </div>
         </div>
     </div>
@@ -112,10 +107,10 @@
         <div class="collapse navbar-collapse text-center justify-content-end" id="navbar2SupportedContent">
             <ul class="navbar-nav">
                 <li class="nav-item active" id="Index">
-                    <a class="nav-link" href="#">Inicio</a>
+                    <a class="nav-link" href="users?action=index&userID=${user.id}">Inicio</a>
                 </li>
                 <li class="nav-item" id="Locations">
-                    <a class="nav-link" href="PanelLocations.jsp">Locales</a>
+                    <a class="nav-link" href="businesses?action=index&userID=${user.id}">Negocios</a>
                 </li>
                 <li class="nav-item" id="Products">
                     <a class="nav-link" href="#">Productos</a>

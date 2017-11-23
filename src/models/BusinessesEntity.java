@@ -1,5 +1,6 @@
 package models;
 
+import java.sql.BatchUpdateException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -40,6 +41,14 @@ public class BusinessesEntity extends BaseEntity {
         return findByCriteria("");
     }
 
+    public List<Business> findBestsBusinesses(){
+        return findByCriteria("group by rank desc");
+    }
+
+    public List<Business> findBadBusinesses(){
+        return findByCriteria("group by rank asc");
+    }
+
     public Business findByRUC(String ruc){
         return findByCriteria(String.format(" where ruc='%s'",ruc)).get(0);
     }
@@ -47,17 +56,19 @@ public class BusinessesEntity extends BaseEntity {
         return findByCriteria(String.format(" where name='%s'",name)).get(0);
     }
 
-    public Business findByAddress(String address){
-        return findByCriteria(String.format(" where address='%s'",address)).get(0);
+    public Business findBestBusiness(){
+
+        return findByCriteria(String.format(" where rank=(SELECT  MAX(rank) FROM business)")).get(0);
     }
 
-    public Business findByPhone(String phone){
-        return  findByCriteria(String.format(" where phone='%s'",phone)).get(0);
+    public List<Business> findByType(String type){
+        return  findByCriteria(String.format(" where type='%s'",type));
     }
 
     public Business findByEmail(String email){
         return findByCriteria(String.format(" where email='%s'",email)).get(0);
     }
+
 
     /**DML**/
     /*

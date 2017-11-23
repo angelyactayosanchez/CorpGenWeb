@@ -1,7 +1,9 @@
 package controllers;
 
 
+import models.Business;
 import models.Location;
+import models.User;
 import services.CgbService;
 
 import javax.servlet.ServletException;
@@ -35,12 +37,16 @@ public class LocationsController extends HttpServlet {
 
     private void processRequest(String method, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action=request.getParameter("action");
-        if(method.equals("GET")){/*
-            if(action.equals("show")){
-                List<Location> locations=service.getAllLocations();
+        if(method.equals("GET")){
+            if(action.equals("index")){
+                User user=service.getUserById(Integer.parseInt(request.getParameter("userID")));
+                request.setAttribute("user",user);
+                Business business=service.getBusinessByRUC(request.getParameter("ruc"));
+                request.setAttribute("business",business);
+                List<Location> locations=service.getLocationsByRuc(request.getParameter("ruc"));
                 request.setAttribute("locations",locations);
-
-            }*/
+                url="panelLocations.jsp";
+            }
             if(action.equals("edit")){
                 int id=Integer.parseInt(request.getParameter("id"));
                 Location location=service.getLocationById(id);

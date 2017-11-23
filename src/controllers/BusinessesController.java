@@ -1,6 +1,6 @@
 package controllers;
 
-import models.Business;
+import models.*;
 import services.CgbService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -32,21 +32,50 @@ public class BusinessesController extends javax.servlet.http.HttpServlet {
         String action = request.getParameter("action");
 
         if(method.equals("GET")) {
-            /* Index Action
-            */if(action.equals("index")) {
+           if(action.equals("index")) {
+                User user=service.getUserById(Integer.parseInt(request.getParameter("userID")));
+                request.setAttribute("user",user);
                 List<Business> businesses = service.getAllBusiness();
                 request.setAttribute("businesses", businesses);
-                url = "listBusinesses.jsp";
+                url = "panelBusinesses.jsp";
             }
-            if(action.equals("show")) {
-                // int id = Integer.parseInt(request.getParameter("id"));
-                String ruc= request.getParameter("ruc");
-                Business business = service.getBusinessByRUC(ruc);
-                request.setAttribute("business", business);
-                url = "showBusinessInfo.jsp";
+            if(action.equals("bestBusinesses")) {
+
+                User user=service.getUserById(Integer.parseInt(request.getParameter("userID")));
+                request.setAttribute("user",user);
+                List<Business> businesses=service.getBestBusinesses();
+                request.setAttribute("businesses", businesses);
+                url = "panelBusinesses.jsp";
+            }
+            if(action.equals("best")){
+
+                User user=service.getUserById(Integer.parseInt(request.getParameter("userID")));
+                request.setAttribute("user",user);
+                Business business=service.getBestBusiness();
+                request.setAttribute("business",business);
+                url = "panelBusinesses.jsp";
+            }
+            if(action.equals("worst")){
+
+                User user=service.getUserById(Integer.parseInt(request.getParameter("userID")));
+                request.setAttribute("user",user);
+                List<Business> businesses =service.getBadBusiness();
+                request.setAttribute("businesses", businesses);
+                url = "panelBusinesses.jsp";
+
+            }
+            if(action.equals("type")){
+
+                User user=service.getUserById(Integer.parseInt(request.getParameter("userID")));
+                request.setAttribute("user",user);
+
+                List<Business> businesses =service.getTypeBusiness(request.getParameter("type"));
+                request.setAttribute("businesses", businesses);
+                url = "panelBusinesses.jsp";
             }
             if(action.equals("new")) {
                 url = "newBusiness.jsp";
+
             }
             if(action.equals("edit")) {
 
@@ -77,7 +106,7 @@ public class BusinessesController extends javax.servlet.http.HttpServlet {
                 log(msg);
                 List<Business> businesses = service.getAllBusiness();
                 request.setAttribute("businesses", businesses);
-                url = "listBusinesses.jsp";
+                url = "";
             }
             if(action.equals("update")) {
                 String ruc=request.getParameter("ruc");
@@ -89,7 +118,7 @@ public class BusinessesController extends javax.servlet.http.HttpServlet {
                 boolean isUpdated = service.updateBusiness(ruc,name,address,phone,email);
                 List<Business> businesses = service.getAllBusiness();
                 request.setAttribute("businesses", businesses);
-                url = "listBusinesses.jsp";
+                url = "";
             }
         }
         request.getRequestDispatcher(url).forward(request, response);

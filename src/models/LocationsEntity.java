@@ -31,6 +31,11 @@ public class LocationsEntity extends BaseEntity {
     public List<Location> findAllLocations(BusinessesEntity businessesEntity, InventoriesEntity inventoriesEntity){
         return findByCriteria("", businessesEntity,inventoriesEntity);
     }
+    public List<Location> findLocationsByRuc(String ruc, BusinessesEntity businessesEntity, InventoriesEntity inventoriesEntity){
+        return findByCriteria(String.format("where ruc='%s'",ruc),businessesEntity,inventoriesEntity);
+    }
+
+
 
     public Location findById(int id, BusinessesEntity businessesEntity, InventoriesEntity inventoriesEntity){
         return findByCriteria(String.format(" where id=%d",id), businessesEntity,inventoriesEntity).get(0);

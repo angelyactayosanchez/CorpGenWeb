@@ -10,12 +10,36 @@ public class Business {
     private String phone;
     private String email;
 
-    public Business(String ruc, String name, String address, String phone, String email) {
+    public String getType() {
+        return type;
+    }
+
+    public Business setType(String type) {
+        this.type = type;
+        return this;
+    }
+
+    private String type;
+
+    public int getRank() {
+        return rank;
+    }
+
+    public Business setRank(int rank) {
+        this.rank = rank;
+        return this;
+    }
+
+    private int rank;
+
+    public Business(String ruc, String name, String address, String phone, String email,int rank,String type) {
         this.ruc = ruc;
         this.name = name;
         this.address = address;
         this.phone = phone;
         this.email = email;
+        this.rank=rank;
+        this.type=type;
     }
 
     public Business() {
@@ -70,7 +94,8 @@ public class Business {
         try {
             return new Business(rs.getString("ruc")
                     ,rs.getString("name"),rs.getString("address")
-                    ,rs.getString("phone"),rs.getString("email"));
+                    ,rs.getString("phone"),rs.getString("email"),
+                    rs.getInt("rank"),rs.getString("type"));
         }catch (SQLException e){
             e.printStackTrace();
         }

@@ -54,6 +54,13 @@ public class CgwDataStore {
         return connection == null ? null: getBusinessesEntity().findAllBusiness();
     }
 
+    public List<Business> findBestBusinesses(){
+        return connection==null?null:getBusinessesEntity().findBestsBusinesses();
+    }
+    public List<Business> findBadBusinesses(){
+        return connection==null?null:getBusinessesEntity().findBadBusinesses();
+    }
+
     public Business findByIdBusiness(String ruc){
         return getBusinessesEntity().findByRUC(ruc);
     }
@@ -61,11 +68,14 @@ public class CgwDataStore {
     public Business findByNameBusiness(String name){
         return getBusinessesEntity().findByName(name);
     }
-    /*
-    public Business createBusiness(String ruc, String name, String address, String phone, String email){
-        return connection==null?null:
-                getBusinessesEntity().createBusiness(ruc, name, address, phone, email);
-    }*/
+
+    public Business findBestBusiness(){
+        return connection==null?null:getBusinessesEntity().findBestBusiness();
+    }
+
+    public List<Business> findByTypeBusiness(String type){
+        return connection==null?null:getBusinessesEntity().findByType(type);
+    }
     public boolean createBusiness(Business business){
         return connection==null?false:
                 getBusinessesEntity().createBusiness(business);
@@ -93,6 +103,9 @@ public class CgwDataStore {
 
     public List<Location> findAllLocations(){
         return getLocationsEntity().findAllLocations(getBusinessesEntity(),getInventoriesEntity());
+    }
+    public List<Location> findLocationsByRuc(String ruc){
+        return getLocationsEntity().findLocationsByRuc(ruc, getBusinessesEntity(),getInventoriesEntity());
     }
 
     public Location findByIdLocations(int id){

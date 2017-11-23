@@ -15,8 +15,8 @@ import java.io.IOException;
 @WebServlet(name = "UsersController",urlPatterns = "/users")
 public class UsersController extends HttpServlet {
 
-    CgbService service;
-    String url;
+    CgbService service=new CgbService();
+    String url="";
 
     public UsersController() {
         super();
@@ -25,7 +25,43 @@ public class UsersController extends HttpServlet {
     }
 
     protected void doPost(javax.servlet.http.HttpServletRequest request, HttpServletResponse response) throws javax.servlet.ServletException, IOException {
-        processRequest("POST", request, response);
+       String action=request.getParameter("action");
+        if(action.equals("create")){
+
+            User user=new User();
+            Status status=new Status();
+            user.setFirstName(request.getParameter("firstName"));
+            user.setLastName(request.getParameter("lastName"));
+            user.setPassword(request.getParameter("password"));
+            user.setGender(Integer.parseInt(request.getParameter("gender")));
+            user.setAddress(request.getParameter("address"));
+            //user.setNumber_phone(request.getParameter("phone"));
+            user.setEmail(request.getParameter("email"));
+            user.setStatus(status.setId(2));
+            String msg=service.createNormalUser(user)?"Creado con exito":"Ocurrio un error";
+            log(msg);
+            url="WelcomeUser.jsp";
+        }
+        if(action.equals("updateToAdmin")){
+            int id=Integer.parseInt(request.getParameter("id"));
+            Status status=new Status();
+            User user=service.getUserById(id);
+            user.setStatus(status.setId(Integer.parseInt(request.getParameter("stId"))));
+            String msg=service.changeStatus(user)?"Permisos actualizados":"Ocurrio un error";
+            log(msg);
+        }
+        if(action.equals("updateUser")){
+            User user=new User();
+            user.setFirstName(request.getParameter("firstName"));
+            user.setLastName(request.getParameter("lName"));
+            user.setPassword(request.getParameter("password"));
+            user.setGender(Integer.parseInt(request.getParameter("gender")));
+            user.setAddress(request.getParameter("address"));
+            user.setNumber_phone(request.getParameter("phone"));
+            String msg=service.updateUser(user)?"Datos Actualizados":"Ocurrio un error";
+            log(msg);
+        }
+        request.getRequestDispatcher(url).forward(request,response);
     }
 
     protected void doGet(javax.servlet.http.HttpServletRequest request, HttpServletResponse response) throws javax.servlet.ServletException, IOException {
@@ -36,10 +72,10 @@ public class UsersController extends HttpServlet {
 
         String action=request.getParameter("action");
         if(method.equals("GET")){
-            if(action.equals("add")){
+            if(action.equals("new")){
 
-                request.setAttribute("action","add");
-                url=".jsp";
+                request.setAttribute("action","new");
+                url="newUser.jsp";
             }
             if(action.equals("edit")){
                 int id=Integer.parseInt(request.getParameter("id"));
@@ -47,44 +83,16 @@ public class UsersController extends HttpServlet {
                 request.setAttribute("user",user);
                 url="editUser.jsp";
             }
+            if(action.equals("index")){
+                User user=service.getUserById(Integer.parseInt(request.getParameter("userID")));
+                request.setAttribute("user",user);
+                url="WelcomeUser.jsp";
+            }
         }
         if(method.equals("POST")){
 
 
-            if(action.equals("create")){
 
-               User user=new User();
-               Status status=new Status();
-               user.setFirstName(request.getParameter("fName"));
-               user.setLastName(request.getParameter("lName"));
-               user.setPassword(request.getParameter("password"));
-               user.setGender(Integer.parseInt(request.getParameter("gender")));
-               user.setAddress(request.getParameter("address"));
-               user.setNumber_phone(request.getParameter("phone"));
-               user.setEmail(request.getParameter("email"));
-               user.setStatus(status.setId(Integer.parseInt(request.getParameter("stId"))));
-               String msg=service.createNormalUser(user)?"Creado con exito":"Ocurrio un error";
-
-            }
-            if(action.equals("updateToAdmin")){
-                int id=Integer.parseInt(request.getParameter("id"));
-                Status status=new Status();
-                User user=service.getUserById(id);
-                user.setStatus(status.setId(Integer.parseInt(request.getParameter("stId"))));
-                String msg=service.changeStatus(user)?"Permisos actualizados":"Ocurrio un error";
-                log(msg);
-            }
-            if(action.equals("updateUser")){
-                User user=new User();
-                user.setFirstName(request.getParameter("fName"));
-                user.setLastName(request.getParameter("lName"));
-                user.setPassword(request.getParameter("password"));
-                user.setGender(Integer.parseInt(request.getParameter("gender")));
-                user.setAddress(request.getParameter("address"));
-                user.setNumber_phone(request.getParameter("phone"));
-                String msg=service.updateUser(user)?"Datos Actualizados":"Ocurrio un error";
-                log(msg);
-            }
         }
         request.getRequestDispatcher(url).forward(request,response);
 

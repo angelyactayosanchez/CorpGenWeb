@@ -51,16 +51,18 @@ public class CgbService {
     public List<Business> getAllBusiness(){
         return getDataStore().findAllBusiness();
     }
+    public List<Business> getBestBusinesses(){return getDataStore().findBestBusinesses();}
+    public List<Business>  getBadBusiness(){return getDataStore().findBadBusinesses(); }
+    public List<Business>  getTypeBusiness(String type){return getDataStore().findByTypeBusiness(type);}
 
     public Business getBusinessByRUC(String ruc){
         return getDataStore().findByIdBusiness(ruc);
     }
 
     public Business getBusinessByName(String name){return getDataStore().findByNameBusiness(name); }
-    /*
-    public Business createBusiness(String ruc, String name, String address, String phone, String email){
-        return getDataStore().createBusiness(ruc, name, address, phone, email);
-    }*/
+
+    public Business getBestBusiness(){return  getDataStore().findBestBusiness();}
+
     public boolean createBusiness(Business business){
         return getDataStore().createBusiness(business);
     }
@@ -88,6 +90,8 @@ public class CgbService {
     /**Location**/
 
     public List<Location> getAllLocations(){return getDataStore().findAllLocations();}
+
+    public List<Location> getLocationsByRuc(String ruc){return getDataStore().findLocationsByRuc(ruc);}
 
     public Location getLocationById(int id){return getDataStore().findByIdLocations(id);}
 

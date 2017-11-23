@@ -91,11 +91,9 @@ public class UsersEntity extends BaseEntity {
 
 
     public boolean createNormalUsers(User user){
-        return executeUpdate(String.format("insert into %s (" +
-                "firstName,lastName,password,gender,address,number_phone,email,status_id,created_at,created_by,updated_at,updated_by)" +
-                " values('%s','%s','%s',%d,'%s','%s','%s',%d,'%s',%d,'%s',%d)",
-                user.getFirstName(), user.getLastName(), user.getPassword(), user.getGender(), user.getAddress(),
-                user.getNumber_phone(), user.getEmail(), user.getStatus().getId(), user.getCreatedAt(), user.getCreatedBy(), user.getUpdatedAt(), user.getUpdatedBy()));
+        return executeUpdate(String.format("INSERT INTO users(first_name, last_name, password, gender, address, email, status_id) " +
+                        "VALUES ('a','s','asd',1,'aa','aa@qq.com',2)",user.getFirstName(), user.getLastName(), user.getPassword(), user.getGender(), user.getAddress(),
+                 user.getEmail(), user.getStatus().getId()));
     }
 
     public boolean updateAttributesUser(User user){
