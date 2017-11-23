@@ -9,6 +9,18 @@ public class Business {
     private String address;
     private String phone;
     private String email;
+    private String type;
+
+    public String getSocial() {
+        return social;
+    }
+
+    public Business setSocial(String social) {
+        this.social = social;
+        return this;
+    }
+
+    private String social;
 
     public String getType() {
         return type;
@@ -19,7 +31,7 @@ public class Business {
         return this;
     }
 
-    private String type;
+
 
     public int getRank() {
         return rank;
@@ -32,7 +44,7 @@ public class Business {
 
     private int rank;
 
-    public Business(String ruc, String name, String address, String phone, String email,int rank,String type) {
+    public Business(String ruc, String name, String address, String phone, String email,int rank,String type,String social) {
         this.ruc = ruc;
         this.name = name;
         this.address = address;
@@ -40,6 +52,7 @@ public class Business {
         this.email = email;
         this.rank=rank;
         this.type=type;
+        this.social=social;
     }
 
     public Business() {
@@ -95,7 +108,7 @@ public class Business {
             return new Business(rs.getString("ruc")
                     ,rs.getString("name"),rs.getString("address")
                     ,rs.getString("phone"),rs.getString("email"),
-                    rs.getInt("rank"),rs.getString("type"));
+                    rs.getInt("rank"),rs.getString("type"),rs.getString("social"));
         }catch (SQLException e){
             e.printStackTrace();
         }

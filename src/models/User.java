@@ -6,7 +6,7 @@ import java.sql.SQLException;
 public class User {
 
     private int id;
-    private String firstName;
+    private String firtName;
     private String lastName;
     private String password;
     private int gender;
@@ -35,9 +35,9 @@ public class User {
 
     }
 
-    public User(int id, String firstName, String lastName, String password, int gender, String address, String number_phone, String email, Status status, int createdBy, int updatedBy, String createdAt, String updatedAt, int manager) {
+    public User(int id, String firtName, String lastName, String password, int gender, String address, String number_phone, String email, Status status, int createdBy, int updatedBy, String createdAt, String updatedAt, int manager) {
         this.id = id;
-        this.firstName = firstName;
+        this.firtName = firtName;
         this.lastName = lastName;
         this.password = password;
         this.gender = gender;
@@ -51,9 +51,9 @@ public class User {
         this.updatedAt = updatedAt;
     }
 
-    public User(int id, String firstName, String lastName, String password, int gender, String address, String number_phone, String email, Status status) {
+    public User(int id, String firtName, String lastName, String password, int gender, String address, String number_phone, String email, Status status) {
         this.id = id;
-        this.firstName = firstName;
+        this.firtName = firtName;
         this.lastName = lastName;
         this.password = password;
         this.gender = gender;
@@ -76,7 +76,7 @@ public class User {
         try {
             return (new User())
                     .setId(rs.getInt("id"))
-                    .setFirstName(rs.getString("first_name"))
+                    .setFirtName(rs.getString("first_name"))
                     .setLastName(rs.getString("last_name"))
                     .setPassword(rs.getString("password"))
                     .setGender(rs.getInt("gender"))
@@ -124,12 +124,12 @@ public class User {
         return this;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getFirtName() {
+        return firtName;
     }
 
-    public User setFirstName(String firstName) {
-        this.firstName = firstName;
+    public User setFirtName(String firtName) {
+        this.firtName = firtName;
         return this;
     }
 

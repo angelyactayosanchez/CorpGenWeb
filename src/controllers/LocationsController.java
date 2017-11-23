@@ -16,9 +16,9 @@ import java.util.List;
 
 @WebServlet(name = "LocationsController",urlPatterns = "/location")
 public class LocationsController extends HttpServlet {
-        CgbService service;
+        CgbService service=new CgbService();
         String url;
-        public static String  LOCATION_INDEX_URI="listLocations.jsp";
+        public static String  LOCATION_INDEX_URI="paneLocations.jsp";
 
     public LocationsController() {
         super();
@@ -38,14 +38,15 @@ public class LocationsController extends HttpServlet {
     private void processRequest(String method, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action=request.getParameter("action");
         if(method.equals("GET")){
+
             if(action.equals("index")){
-                User user=service.getUserById(Integer.parseInt(request.getParameter("userID")));
+                User user=service.getUserById(Integer.parseInt(request.getParameter("user")));
                 request.setAttribute("user",user);
                 Business business=service.getBusinessByRUC(request.getParameter("ruc"));
                 request.setAttribute("business",business);
-                List<Location> locations=service.getLocationsByRuc(request.getParameter("ruc"));
+                List<Location> locations=service.getLocationsByRuc(business.getRuc());
                 request.setAttribute("locations",locations);
-                url="panelLocations.jsp";
+                url=LOCATION_INDEX_URI;
             }
             if(action.equals("edit")){
                 int id=Integer.parseInt(request.getParameter("id"));

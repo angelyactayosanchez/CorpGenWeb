@@ -28,7 +28,7 @@
                         <h3 class="pb-3">Crear una nueva cuenta</h3>
                         <form method="post" action="users">
                             <div class="form-group"> <label>Nombres</label>
-                                <input class="form-control" placeholder="Your name, please" id="firstName" name="firstName" required> </div>
+                                <input class="form-control" placeholder="Your name, please" id="firtName" name="firtName" required> </div>
                             <div class="form-group"> <label>Apellidos</label>
                                 <input class="form-control" type="text" id="lastName"  name="lastName"> </div>
                             <div class="form-group"> <label>Direccion</label>
@@ -43,10 +43,11 @@
                                 <input type="email" class="form-control" placeholder="" name="email" REQUIRED> </div>
                             <div class="form-group"> <label>Contraseña</label>
                                 <input type="password" class="form-control" placeholder="" name="password" REQUIRED> </div>
-                            <input type="hidden" name="action" value="new"/>
+                            <input type="hidden" name="action" value="create"/>
                             <button input type="submit" class="btn mt-2 btn-block btn-outline-success" >Crear</button>
 
-                            <%--<button  type="submit" class="btn mt-2 btn-block btn-outline-danger" href="index.jsp">Cancelar</button>--%>
+                            <%--<input type="hidden" name="action" value="return"/>--%>
+                            <button  type="submit" class="btn mt-2 btn-block btn-outline-danger" href="index.jsp">Cancelar</button>
                         </form>
                     </div>
                 </div>

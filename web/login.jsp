@@ -15,8 +15,8 @@ Login page
     <div class="container">
         <div class="row">
             <div class="col-md-4">
-                <h1 class="text-gray-dark">Contact form</h1>
-                <p class="lead mb-4">Complete all the fields below to send us a message</p>
+                <h1 class="text-gray-dark">Iniciar sesion</h1>
+                <p class="lead mb-4"></p>
                 <form class="" method="post" action="validation">
                     <div class="form-group"> <label>Email address</label>
                         <input type="email" name="email" class="form-control" placeholder="Enter email" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}" REQUIRED > </div>

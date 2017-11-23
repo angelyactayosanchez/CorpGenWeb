@@ -99,7 +99,7 @@
                             <td><c:out value="${business.phone}"/></td>
                             <td><c:out value="${business.rank}"/></td>
                             <td><c:out value="${business.type}"/></td>
-                            <a class="btn btn-sm btn-outline-info" href="location?index&ruc=<c:out value="${business.ruc}"/>&user=<c:out value="${user.id}"/>" id="localesNegocio" data-toggle="">Ver locales</a>
+                            <td><a class="btn btn-sm btn-outline-info" href="location?action=index&ruc=<c:out value="${business.ruc}"/>&user=<c:out value="${user.id}"/>" id="localesNegocio" data-toggle="">Ver locales</a></td>
                         </tr>
                     </tbody>
                     </c:forEach>

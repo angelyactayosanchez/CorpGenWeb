@@ -32,7 +32,7 @@ public class ValidationController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
          String email=new String(request.getParameter("email").getBytes("ISO-8859-1"),"UTF-8");
-            String user=email;
+
             String password=new String(request.getParameter("password").getBytes("ISO-8859-1"),"UTF-8");
             UsersEntity u=new UsersEntity();
             String validation="";
@@ -45,11 +45,13 @@ public class ValidationController extends HttpServlet {
                         dispatcher.forward(request,response);
                     log("Funciona v:");
 
+
             }else{
-                if (u.validate(user,password)==false){
+                if (u.validate(email,password)==false){
                     request.setAttribute("validation",validation);
 
                     log("No hay datos");
+                    url="index.jsp";
                 }
             }/*
         String email=request.getParameter("email");

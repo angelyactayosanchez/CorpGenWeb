@@ -16,7 +16,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="css/x.css" type="text/css"> </head>
+    <link rel="stylesheet" href="css/estilo.css" type="text/css"> </head>
 
 <body>
 <div class="py-5 text-white bg-success">
@@ -119,7 +119,7 @@
                     <a class="nav-link" href="#">Promociones</a>
                 </li>
             </ul>
-            <a class="btn navbar-btn btn-primary ml-2 text-white" href="" id="UseProfile"><i class="fa d-inline fa-lg fa-user-circle-o"></i>Hola  <c:out value="${user.firstName}"/>&nbsp;</a>
+            <a class="btn navbar-btn btn-primary ml-2 text-white" href="" id="UseProfile"><i class="fa d-inline fa-lg fa-user-circle-o"></i>Hola  <c:out value="${user.firtName}"/>&nbsp;</a>
         </div>
     </div>
 </nav>
