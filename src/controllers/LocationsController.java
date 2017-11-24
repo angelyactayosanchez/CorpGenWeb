@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
@@ -40,9 +41,12 @@ public class LocationsController extends HttpServlet {
         if(method.equals("GET")){
 
             if(action.equals("index")){
-                User user=service.getUserById(Integer.parseInt(request.getParameter("user")));
+                HttpSession session=request.getSession();
+                int idUser=(int)session.getAttribute("id");
+                String ruc=(String)session.getAttribute("ruc");
+                User user=service.getUserById(idUser);
                 request.setAttribute("user",user);
-                Business business=service.getBusinessByRUC(request.getParameter("ruc"));
+                Business business=service.getBusinessByRUC(ruc);
                 request.setAttribute("business",business);
                 List<Location> locations=service.getLocationsByRuc(business.getRuc());
                 request.setAttribute("locations",locations);

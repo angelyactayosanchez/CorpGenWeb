@@ -1,4 +1,5 @@
-<%--
+<%@ page import="models.User" %>
+<%@ page import="models.Business" %><%--
   Created by IntelliJ IDEA.
   User: root
   Date: 22/11/17
@@ -8,6 +9,15 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:useBean id="service" class="services.CgbService"/>
+<%
+    User user=(User)session.getAttribute("usuario");
+
+    if(user==null){
+        response.sendRedirect("index.jsp");
+    }
+   // session.setAttribute("id",user.getId());
+
+%>
 <html>
 
 <head>
@@ -26,19 +36,20 @@
         <div class="collapse navbar-collapse text-center justify-content-end" id="navbar2SupportedContent">
             <ul class="navbar-nav">
                 <li class="nav-item active" id="Index">
-                    <a class="nav-link" href="users?action=index&userID=${user.id}">Inicio</a>
+                    <a class="nav-link" href="users?action=index">Inicio</a>
                 </li>
                 <li class="nav-item" id="Business">
-                    <a class="nav-link disabled" href="#" target="">Negocios</a>
+                    <a class="nav-link disabled" href="#" target="" >Negocios</a>
                 </li>
                 <li class="nav-item" id="Products">
-                    <a class="nav-link" href="panelProducts.jsp">Productos</a>
+                    <a class="nav-link" href="#">Productos</a>
                 </li>
                 <li class="nav-item" id="Promotions">
-                    <a class="nav-link" href="panelPromotions.jsp">Promociones</a>
+                    <a class="nav-link" href="promotion?action=index">Promociones</a>
                 </li>
             </ul>
-            <a class="btn navbar-btn ml-2 text-white btn-secondary" href="" id="UseProfile"><i class="fa d-inline fa-lg fa-user-circle-o"></i>Hola<c:out value="${user.firtName}"/> &nbsp;</a>
+            <a class="btn navbar-btn ml-2 text-white btn-secondary" href="users?action=profile" id=""><i class="fa d-inline fa-lg fa-user-circle-o"></i>Hola ${sessionScope.name} &nbsp;</a>
+            <a class="btn navbar-btn ml-2 text-white btn-secondary" href="logout.jsp"><i class="fa fa-fw fa-sign-out"></i>Salir</a>
         </div>
     </div>
 </nav>
@@ -99,7 +110,7 @@
                             <td><c:out value="${business.phone}"/></td>
                             <td><c:out value="${business.rank}"/></td>
                             <td><c:out value="${business.type}"/></td>
-                            <td><a class="btn btn-sm btn-outline-info" href="location?action=index&ruc=<c:out value="${business.ruc}"/>&user=<c:out value="${user.id}"/>" id="localesNegocio" data-toggle="">Ver locales</a></td>
+                            <td><a class="btn btn-sm btn-outline-info" href="location?action=index&ruc=${business.ruc}" id="localesNegocio" data-toggle="">Ver locales</a></td>
                         </tr>
                     </tbody>
                     </c:forEach>

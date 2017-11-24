@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet(name = "ValidationController",urlPatterns = "/validation")
@@ -40,8 +41,23 @@ public class ValidationController extends HttpServlet {
 
                     request.setAttribute("validation",validation);
                     User user1=service.getUserByValidation(email,password);
+
                     request.setAttribute("user",user1);
-                    RequestDispatcher dispatcher=request.getRequestDispatcher("homeUser.jsp");
+
+                HttpSession session =   request.getSession();
+                session.setAttribute("usuario",user1);
+                session.setAttribute("id",user1.getId());
+                session.setAttribute("password",user1.getPassword());
+                session.setAttribute("name",user1.getFirtName());
+                session.setAttribute("name2",user1.getLastName());
+                session.setAttribute("address",user1.getAddress());
+                session.setAttribute("numPhone",user1.getNumber_phone());
+                session.setAttribute("gender",user1.getGender());
+                session.setAttribute("emai",user1.getEmail());
+                session.setAttribute("statusID",user1.getStatus().getType());
+
+
+                RequestDispatcher dispatcher=request.getRequestDispatcher("homeUser.jsp");
                         dispatcher.forward(request,response);
                     log("Funciona v:");
 

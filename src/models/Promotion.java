@@ -8,25 +8,37 @@ public class Promotion {
     private int id;
     private String name;
     private String state;
-    private String description;
     private String timeStart;
     private String timeFinish;
     private Location location;
     private Product product;
 
+    public String getImg() {
+        return img;
+    }
+
+    public Promotion setImg(String img) {
+        this.img = img;
+        return this;
+    }
+
+    private String img;
+
     public Promotion() {
     }
 
-    public Promotion(int id, String name, String state, String description, String timeStart, String timeFinish, Location location, Product product) {
+    public Promotion(int id, String name, String state, String timeStart, String timeFinish, Location location, Product product,String img) {
         this.id = id;
         this.name = name;
         this.state = state;
-        this.description = description;
         this.timeStart = timeStart;
         this.timeFinish = timeFinish;
         this.location = location;
         this.product = product;
+        this.img=img;
     }
+
+
 
     public int getId() {
         return id;
@@ -52,15 +64,6 @@ public class Promotion {
 
     public Promotion setState(String state) {
         this.state = state;
-        return this;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public Promotion setDescription(String description) {
-        this.description = description;
         return this;
     }
 
@@ -106,11 +109,10 @@ public class Promotion {
                         rs.getInt("id"),
                     rs.getString("name"),
                     rs.getString("state"),
-                    rs.getString("description"),
                     rs.getString("time_start"),
                     rs.getString("time_finish"),
                     locationsEntity.findById(rs.getInt("locations_id"), businessesEntity,inventoriesEntity),
-                    productsEntity.findById(rs.getInt("products_id"),categoriesEntity));
+                    productsEntity.findById(rs.getInt("products_id"),categoriesEntity),rs.getString("image"));
         }catch (SQLException e){
             e.printStackTrace();
         }

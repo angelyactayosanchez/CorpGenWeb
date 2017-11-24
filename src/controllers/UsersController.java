@@ -1,5 +1,6 @@
 package controllers;
 
+import jdk.nashorn.internal.objects.AccessorPropertyDescriptor;
 import models.Status;
 import models.User;
 import services.CgbService;
@@ -8,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet(name = "UsersController",urlPatterns = "/users")
@@ -43,15 +45,19 @@ public class UsersController extends HttpServlet {
                 request.setAttribute("action","new");
                 url="newUser.jsp";
             }
-            if(action.equals("edit")){
-                int id=Integer.parseInt(request.getParameter("id"));
+            if(action.equals("profile")){
+                HttpSession session=request.getSession();
+                int id=(int)session.getAttribute("id");
                 User user=service.getUserById(id);
                 request.setAttribute("user",user);
-                url="editUser.jsp";
+                url="profileUser.jsp";
             }
             if(action.equals("index")){
-                User user=service.getUserById(Integer.parseInt(request.getParameter("userID")));
+                HttpSession session=request.getSession();
+                int id=(int)session.getAttribute("id");
+                User user=service.getUserById(id);
                 request.setAttribute("user",user);
+
                 url="WelcomeUser.jsp";
             }
         }
@@ -83,15 +89,18 @@ public class UsersController extends HttpServlet {
                 log(msg);
             }
             if(action.equals("updateUser")){
-                User user=new User();
+                HttpSession session=request.getSession();
+                int id=(int)session.getAttribute("id");
+                User user=service.getUserById(id);
                 user.setFirtName(request.getParameter("firstName"));
-                user.setLastName(request.getParameter("lName"));
+                user.setLastName(request.getParameter("lastName"));
                 user.setPassword(request.getParameter("password"));
                 user.setGender(Integer.parseInt(request.getParameter("gender")));
                 user.setAddress(request.getParameter("address"));
                 user.setNumber_phone(request.getParameter("phone"));
                 String msg=service.updateUser(user)?"Datos Actualizados":"Ocurrio un error";
                 log(msg);
+                url="profileUser.jsp";
             }
 
         }

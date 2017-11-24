@@ -3,6 +3,7 @@ package controllers;
 import models.Location;
 import models.Product;
 import models.Promotion;
+import models.User;
 import services.CgbService;
 
 import javax.servlet.ServletException;
@@ -10,7 +11,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet(name = "PromotionsController",urlPatterns = "/promotion")
 public class PromotionsController extends HttpServlet {
@@ -40,10 +43,18 @@ public class PromotionsController extends HttpServlet {
                 int id=Integer.parseInt(request.getParameter("id"));
                 Promotion promotion=service.getPromotionById(id);
                 request.setAttribute("promotion",promotion);
-
+                url="promotions.jsp";
             }
             if(action.equals("add")){
                 request.setAttribute("action","add");
+            }
+            if(action.equals("index")){
+                //HttpSession session=request.getSession();
+
+                List<Promotion> promotions=service.getAllPromotions();
+
+                request.setAttribute("promotions",promotions);
+                url="promotions.jsp";
             }
 
         }
@@ -55,7 +66,7 @@ public class PromotionsController extends HttpServlet {
                promotion.setId(Integer.parseInt(request.getParameter("id")));
                promotion.setName(request.getParameter("name"));
                promotion.setState(request.getParameter("state"));
-               promotion.setDescription(request.getParameter("description"));
+
                promotion.setTimeStart(request.getParameter("timeStart"));
                promotion.setTimeFinish(request.getParameter("timeFinish"));
                promotion.setLocation(location.setId(Integer.parseInt(request.getParameter("id"))));
@@ -75,8 +86,6 @@ public class PromotionsController extends HttpServlet {
 
             }
 
-            //deberia redirigirse a un panel de control de un administrador
-            url="";
         }
         request.getRequestDispatcher(url).forward(request,response);
     }

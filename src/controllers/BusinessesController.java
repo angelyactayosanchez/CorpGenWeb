@@ -5,12 +5,13 @@ import services.CgbService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
 @javax.servlet.annotation.WebServlet(name = "BusinessesController", urlPatterns = "/businesses")
 public class BusinessesController extends javax.servlet.http.HttpServlet {
-    CgbService service;
+    CgbService service=new CgbService();
     String url;
 
     public BusinessesController() {
@@ -33,31 +34,36 @@ public class BusinessesController extends javax.servlet.http.HttpServlet {
 
         if(method.equals("GET")) {
            if(action.equals("index")) {
-                User user=service.getUserById(Integer.parseInt(request.getParameter("userID")));
-                request.setAttribute("user",user);
+               HttpSession session=request.getSession();
+               int id=(int)session.getAttribute("id");
+               User user=service.getUserById(id);
+               request.setAttribute("user",user);
                 List<Business> businesses = service.getAllBusiness();
                 request.setAttribute("businesses", businesses);
                 url = "panelBusinesses.jsp";
             }
             if(action.equals("bestBusinesses")) {
-
-                User user=service.getUserById(Integer.parseInt(request.getParameter("userID")));
+                HttpSession session=request.getSession();
+                int id=(int)session.getAttribute("id");
+                User user=service.getUserById(id);
                 request.setAttribute("user",user);
                 List<Business> businesses=service.getBestBusinesses();
                 request.setAttribute("businesses", businesses);
                 url = "panelBusinesses.jsp";
             }
             if(action.equals("best")){
-
-                User user=service.getUserById(Integer.parseInt(request.getParameter("userID")));
+                HttpSession session=request.getSession();
+                int id=(int)session.getAttribute("id");
+                User user=service.getUserById(id);
                 request.setAttribute("user",user);
                 Business business=service.getBestBusiness();
                 request.setAttribute("business",business);
                 url = "panelBusinesses.jsp";
             }
             if(action.equals("worst")){
-
-                User user=service.getUserById(Integer.parseInt(request.getParameter("userID")));
+                HttpSession session=request.getSession();
+                int id=(int)session.getAttribute("id");
+                User user=service.getUserById(id);
                 request.setAttribute("user",user);
                 List<Business> businesses =service.getBadBusiness();
                 request.setAttribute("businesses", businesses);
@@ -65,8 +71,9 @@ public class BusinessesController extends javax.servlet.http.HttpServlet {
 
             }
             if(action.equals("type")){
-
-                User user=service.getUserById(Integer.parseInt(request.getParameter("userID")));
+                HttpSession session=request.getSession();
+                int id=(int)session.getAttribute("id");
+                User user=service.getUserById(id);
                 request.setAttribute("user",user);
 
                 List<Business> businesses =service.getTypeBusiness(request.getParameter("type"));

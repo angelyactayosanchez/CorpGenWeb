@@ -1,3 +1,5 @@
+<%@ page import="models.User" %>
+<%@ page import="models.Business" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
@@ -7,6 +9,13 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    User user=(User)session.getAttribute("usuario");
+
+    if(user==null){
+        response.sendRedirect("index.jsp");
+    }
+%>
 
 <html>
 
@@ -24,17 +33,17 @@
         <div class="collapse navbar-collapse text-center justify-content-end" id="navbar2SupportedContent">
             <ul class="navbar-nav">
                 <li class="nav-item active" id="Index">
-                    <a class="nav-link" href="location?action=index&user=<c:out value="${user.id}"/>">Inicio</a>
+                    <a class="nav-link" href="users?action=index"/>">Inicio</a>
                 </li>
                 <li class="nav-item" id="Products">
                     <a class="nav-link" href="#">Productos</a>
                 </li>
                 <li class="nav-item" id="Promotions">
-                    <a class="nav-link" href="#">Promociones</a>
+                    <a class="nav-link" href="promotion?action=index">Promociones</a>
                 </li>
             </ul>
-            <a class="btn navbar-btn ml-2 text-white btn-secondary" href="" id="UseProfile"> <i class="fa d-inline fa-lg fa-user-circle-o"></i>Hola <c:out value="${user.firtName}"/>&nbsp;</a>
-            <a class="btn navbar-btn ml-2 text-white btn-secondary" href="index.jsp"><i class="fa fa-fw fa-sign-out"></i>Salir</a>
+            <a class="btn navbar-btn ml-2 text-white btn-secondary" href="users?action=profile" id="UseProfile"> <i class="fa d-inline fa-lg fa-user-circle-o"></i>Hola ${sessionScope.name}&nbsp;</a>
+            <a class="btn navbar-btn ml-2 text-white btn-secondary" href="logout.jsp"><i class="fa fa-fw fa-sign-out"></i>Salir</a>
         </div>
     </div>
 </nav>

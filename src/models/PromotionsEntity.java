@@ -64,25 +64,25 @@ public class PromotionsEntity extends BaseEntity {
     /**DML**/
 
     public boolean createPromotions(Promotion promotion){
-        return executeUpdate(String.format("insert into '%s' (name,state,description,time_start,time_finish,locations_id,products_id) " +
-                "values('%s','%s','%s','%s','%s',%d,%d)",getTableName(), promotion.getName(), promotion.getState(), promotion.getDescription(), promotion.getTimeStart(),
-                            promotion.getTimeFinish(), promotion.getLocation().getId(), promotion.getProduct().getId()));
+        return executeUpdate(String.format("insert into %s (name,state,time_start,time_finish,locations_id,products_id,image) " +
+                "values('%s','%s','%s','%s',%d,%d,'%s')",getTableName(), promotion.getName(), promotion.getState()
+                        , promotion.getTimeStart(),  promotion.getTimeFinish(), promotion.getLocation().getId(), promotion.getProduct().getId(),promotion.getImg()));
     }
 
     public boolean updatePromotions(Promotion promotion){
-        return executeUpdate(String.format("update '%s' set name='%s',state='%s',description='%s',time_start='%s',time_finish='%s',locations_id=%d,products_id=%d where id=%d)"
-                ,getTableName(), promotion.getName(), promotion.getState(), promotion.getDescription(), promotion.getTimeStart(),
-                promotion.getTimeFinish(), promotion.getLocation().getId(), promotion.getProduct().getId(), promotion.getId()));
+        return executeUpdate(String.format("update %s set name='%s',state='%s',time_start='%s',time_finish='%s',locations_id=%d,products_id=%d ,image='%s' where id=%d)"
+                ,getTableName(), promotion.getName(), promotion.getState(), promotion.getTimeStart(),
+                promotion.getTimeFinish(), promotion.getLocation().getId(), promotion.getProduct().getId(),promotion.getImg(), promotion.getId()));
     }
 
     public boolean changeStatusPromotions(Promotion promotion){
-        return executeUpdate(String.format("update '%s' set  state='%s' where id=%d)"
+        return executeUpdate(String.format("update %s set  state='%s' where id=%d)"
                 ,getTableName(), promotion.getState(), promotion.getId()));
     }
 
 
     public boolean deletePromotion(Promotion promotion){
-        return executeUpdate(String.format("delete from '%s' where id=%d",getTableName(), promotion.getId()));
+        return executeUpdate(String.format("delete from %s where id=%d",getTableName(), promotion.getId()));
     }
 
 }

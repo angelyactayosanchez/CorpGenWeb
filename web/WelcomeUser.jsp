@@ -1,13 +1,16 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: root
-  Date: 21/11/17
-  Time: 0:13
-  To change this template use File | Settings | File Templates.
---%>
-
+<%@ page import="models.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+    User user=(User)session.getAttribute("usuario");
+
+    if(user==null){
+        response.sendRedirect("index.jsp");
+    }else{
+        //session.setAttribute("id",user.getId());
+    }
+
+%>
 
 <jsp:useBean id="service" class="services.CgbService"/>
 <html>
@@ -23,21 +26,21 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1 class="display-1" id="user1"  > Bienvenido</h1>
+                <h1 class="display-1" id="user1"  > Bienvenido ${sessionScope.name} </h1>
             </div>
         </div>
         <div class="row">
             <div class="align-self-center p-5 col-md-6">
                 <h1 class="mb-4">¿En busca de donde divertirte?</h1>
                 <p class="mb-5">Corpgen te facilita la búsqueda de los mejores neogocios nocturnos, para que te diviertas sin preocupaciones</p>
-                <a class="btn btn-lg btn-outline-light" href="businesses?action=index&userID=${user.id}" id="localesbuttom" type="">Ver negocios
+                <a class="btn btn-lg btn-outline-light" href="businesses?action=index" id="localesbuttom" type="">Ver negocios
                     <br> </a>
             </div>
             <div class="col-md-6 p-0">
                 <div id="carousel1" class="carousel slide" data-ride="carousel" data-interval="3500">
                     <div class="carousel-inner" role="listbox">
                         <div class="carousel-item">
-                            <img src="images/discoteca1.jpg.jpg" atl="first slide" class="d-block img-fluid w-100">
+                            <img src="images/discoteca1.jpg" atl="first slide" class="d-block img-fluid w-100">
                             <div class="carousel-caption">
 
                             </div>
@@ -45,11 +48,11 @@
                         <div class="carousel-item">
                             <img class="d-block img-fluid w-100" src="images/discoteca2.jpg" data-holder-rendered="true">
                             <div class="carousel-caption">
-
+                                <img class="d-block img-fluid w-100" src="images/discoteca3.jpg" data-holder-rendered="true">
                             </div>
                         </div>
                         <div class="carousel-item active" id="carouselLocations">
-                            <img class="d-block img-fluid w-100" src="https://pingendo.github.io/templates/sections/assets/gallery_restaurant_3.jpg" data-holder-rendered="true">
+                            <img class="d-block img-fluid w-100" src="images/discoteca4.jpg" data-holder-rendered="true">
                             <div class="carousel-caption">
 
                                 <p>Take the time to chill</p>
@@ -70,19 +73,13 @@
                 <div id="carousel2" class="carousel slide" data-ride="carousel" data-interval="3500">
                     <div class="carousel-inner" role="listbox">
                         <div class="carousel-item">
-                            <img src="https://pingendo.github.io/templates/sections/assets/gallery_restaurant_1.jpg" atl="first slide" class="d-block img-fluid w-100">
+                            <img src="images/product1.jpg" atl="first slide" class="d-block img-fluid w-100">
                             <div class="carousel-caption">
-
+                                <img src="images/product3.jpg" atl="first slide" class="d-block img-fluid w-100">
                             </div>
                         </div>
                         <div class="carousel-item active carousel-item-left">
-                            <img class="d-block img-fluid w-100" src="https://pingendo.github.io/templates/sections/assets/gallery_restaurant_2.jpg" data-holder-rendered="true">
-                            <div class="carousel-caption">
-
-                            </div>
-                        </div>
-                        <div class="carousel-item carousel-item-next carousel-item-left" id="carouselProducts">
-                            <img class="d-block img-fluid w-100" src="https://pingendo.github.io/templates/sections/assets/gallery_restaurant_3.jpg" data-holder-rendered="true">
+                            <img class="d-block img-fluid w-100" src="images/product2.jpg" data-holder-rendered="true">
                             <div class="carousel-caption">
 
                             </div>
@@ -93,8 +90,8 @@
                 </div>
             </div>
             <div class="align-self-center p-5 col-md-6">
-                <h1 class="mb-4">¿O buscas los mejores productos v: ?</h1>
-                <p class="mb-5">Para no parar hasta el amanecer v:.&nbsp; No mentira :v .</p>
+                <h1 class="mb-4">¿O buscas los mejores productos?</h1>
+                <p class="mb-5"></p>
                 <a class="btn btn-lg btn-outline-light" href="product?action=index" id="productsButtom">Ver productos</a>
             </div>
         </div>
@@ -107,19 +104,21 @@
         <div class="collapse navbar-collapse text-center justify-content-end" id="navbar2SupportedContent">
             <ul class="navbar-nav">
                 <li class="nav-item active" id="Index">
-                    <a class="nav-link" href="users?action=index&userID=${user.id}">Inicio</a>
+                    <a class="nav-link" href="users?action=index">Inicio</a>
                 </li>
                 <li class="nav-item" id="Locations">
-                    <a class="nav-link" href="businesses?action=index&userID=${user.id}">Negocios</a>
+                    <a class="nav-link" href="businesses?action=index">Negocios</a>
                 </li>
                 <li class="nav-item" id="Products">
                     <a class="nav-link" href="#">Productos</a>
                 </li>
                 <li class="nav-item" id="Promotions">
-                    <a class="nav-link" href="#">Promociones</a>
+                    <a class="nav-link" href="promotion?action=index">Promociones</a>
                 </li>
             </ul>
-            <a class="btn navbar-btn btn-primary ml-2 text-white" href="" id="UseProfile"><i class="fa d-inline fa-lg fa-user-circle-o"></i>Hola  <c:out value="${user.firtName}"/>&nbsp;</a>
+            <a class="btn navbar-btn btn-primary ml-2 text-white" href="users?action=profile" id="UseProfile"><i class="fa d-inline fa-lg fa-user-circle-o"></i>Hola ${sessionScope.name} &nbsp;</a>
+
+            <a class="btn navbar-btn ml-2 text-white btn-secondary" href="logout.jsp"><i class="fa fa-fw fa-sign-out"></i>Salir</a>
         </div>
     </div>
 </nav>
