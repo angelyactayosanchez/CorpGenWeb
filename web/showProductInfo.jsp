@@ -44,8 +44,8 @@
                     <a class="nav-link" href="event?action=index">Eventos</a>
                 </li>
             </ul>
-            <a class="btn navbar-btn ml-2 text-white btn-secondary" href="" id="UseProfile"> <i class="fa d-inline fa-lg fa-user-circle-o"></i>Hola&nbsp;</a>
-            <a class="btn navbar-btn ml-2 text-white btn-secondary"><i class="fa fa-fw fa-sign-out"></i>Salir</a>
+            <a class="btn navbar-btn ml-2 text-white btn-secondary" href="users?action=profile" id="UseProfile"> <i class="fa d-inline fa-lg fa-user-circle-o"></i>Hola&nbsp;</a>
+            <a class="btn navbar-btn ml-2 text-white btn-secondary" href="logout.jsp"><i class="fa fa-fw fa-sign-out"></i>Salir</a>
         </div>
     </div>
 </nav>
@@ -67,7 +67,7 @@
                     <div class="card-body">
                         <h4>Nombre: <c:out value="${product.name}"/></h4><br>
                         <h4>Marca   <c:out value="${product.brand}"/></h4><br>
-                        <h4>Categoria</h4><br>
+                        <h4>Categoria<c:out value="${product.category.description}"/> </h4><br>
                         <h4>Precio(S/.)   <c:out value="${product.price}"/></h4><br>
                         <h4>Descripcion</h4>
                         <p class=" p-y-1">
@@ -76,7 +76,7 @@
                 </div>
             </div>
             <div class="col-md-8">
-                <img class="img-fluid d-block" src="https://pingendo.com/assets/photos/wireframe/photo-1.jpg">
+                <img class="img-fluid d-block" src="${product.image}">
             </div>
         </div>
     </div>
