@@ -11,7 +11,7 @@ Login page
     <link rel="stylesheet" href="https://pingendo.com/assets/bootstrap/bootstrap-4.0.0-beta.1.css" type="text/css"> </head>
 
 <body>
-<div class="py-5 text-white opaque-overlay" style="background-image: url(&quot;https://pingendo.github.io/templates/sections/assets/cover_restaurant.jpg&quot;);">
+<div class="py-5 text-white opaque-overlay" style="background-image: url(images/form.jpg);">
     <div class="container">
         <div class="row">
             <div class="col-md-4">
@@ -21,21 +21,11 @@ Login page
                     <div class="form-group"> <label>Email address</label>
                         <input type="email" name="email" class="form-control" placeholder="Enter email" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}" REQUIRED > </div>
                     <div class="form-group"> <label>Password</label>
-                        <input type="password" name="password" class="form-control" placeholder="Password" > </div>
+                        <input type="password" name="password" class="form-control" placeholder="Password"  REQUIREDe> </div>
 
                     <input type="hidden" value="validation" name="action"/>
                     <button type="submit" class="btn btn-primary" id="loginButtom" >Enviar</button>
-
                 </form>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="py-5 bg-dark text-white">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 mt-3 text-center">
-                <p>© Copyright 2017 Corpgen - All rights reserved.</p>
             </div>
         </div>
     </div>

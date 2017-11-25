@@ -9,15 +9,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:useBean id="service" class="services.CgbService"/>
-<%
-    User user=(User)session.getAttribute("usuario");
 
-    if(user==null){
-        response.sendRedirect("index.jsp");
-    }
-   // session.setAttribute("id",user.getId());
 
-%>
 <html>
 
 <head>
@@ -30,7 +23,7 @@
 <body>
 <div class="py-5"></div>
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" id="navSuperior">
-    <a class="navbar-brand" href="index.jsp" id="nameCompany">Corpgenweb</a>
+    <a class="navbar-brand" href="users?action=index" id="nameCompany">Corpgenweb</a>
     <div class="container-fluid">
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar2SupportedContent" aria-controls="navbar2SupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
         <div class="collapse navbar-collapse text-center justify-content-end" id="navbar2SupportedContent">
@@ -45,7 +38,7 @@
                     <a class="nav-link" href="#">Productos</a>
                 </li>
                 <li class="nav-item" id="Promotions">
-                    <a class="nav-link" href="promotion?action=index">Promociones</a>
+                    <a class="nav-link" href="event?action=index">Eventos</a>
                 </li>
             </ul>
             <a class="btn navbar-btn ml-2 text-white btn-secondary" href="users?action=profile" id=""><i class="fa d-inline fa-lg fa-user-circle-o"></i>Hola ${sessionScope.name} &nbsp;</a>

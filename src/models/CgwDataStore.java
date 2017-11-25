@@ -16,7 +16,7 @@ public class CgwDataStore {
     private InvOperationEntity invOperationEntity;
     private InvTransaccionEntity invTransaccionEntity;
     private OrdersEntity ordersEntity;
-    private PromotionsEntity promotionsEntity;
+    private EventsEntity eventsEntity;
     private ProductsInventoriesEntity productsInventoriesEntity;
     private OrderProductsEntity orderProductsEntity;
 
@@ -336,7 +336,7 @@ public class CgwDataStore {
         return getUsersEntity().findByFirstName(firstName,getStatusEntity());
     }
 
-    public User findByEmainPass(String email,String password){
+    public User findByEmailPass(String email, String password){
         return getUsersEntity().findByNameAndPass(email,password,getStatusEntity());
     }
 
@@ -506,65 +506,65 @@ public class CgwDataStore {
         return getOrdersEntity().committedOrder(order);
     }
 
-    /**Promotion**/
-    public PromotionsEntity getPromotionsEntity() {
-        if(promotionsEntity==null){
-            promotionsEntity=new PromotionsEntity();
-            promotionsEntity.setConnection(connection);
+    /**Event**/
+    public EventsEntity getEventsEntity() {
+        if(eventsEntity ==null){
+            eventsEntity =new EventsEntity();
+            eventsEntity.setConnection(connection);
         }
-        return promotionsEntity;
+        return eventsEntity;
     }
 
-    public CgwDataStore setPromotionsEntity(PromotionsEntity promotionsEntity) {
-        this.promotionsEntity = promotionsEntity;
+    public CgwDataStore setEventsEntity(EventsEntity eventsEntity) {
+        this.eventsEntity = eventsEntity;
         return this;
     }
 
-    public List<Promotion> findAllPromotions(){
-        return getPromotionsEntity().findAllPromotions(getLocationsEntity(),getProductsEntity(),getCategoriesEntity(),getBusinessesEntity(),getInventoriesEntity());
+    public List<Event> findAllEvents(){
+        return getEventsEntity().findAllEvents(getLocationsEntity(),getProductsEntity(),getCategoriesEntity(),getBusinessesEntity(),getInventoriesEntity());
     }
 
-    public Promotion findByIdPromotion(int id){
-        return getPromotionsEntity().findByIdPromotions(id,getLocationsEntity(),getProductsEntity(),getCategoriesEntity(),getBusinessesEntity(),getInventoriesEntity());
+    public Event findByIdPromotion(int id){
+        return getEventsEntity().findByIdPromotions(id,getLocationsEntity(),getProductsEntity(),getCategoriesEntity(),getBusinessesEntity(),getInventoriesEntity());
     }
 
-    public Promotion findByNamePromotion(String name){
-        return getPromotionsEntity().findByNamePromotions(name,getLocationsEntity(),getProductsEntity(),getCategoriesEntity(),getBusinessesEntity(),getInventoriesEntity());
+    public Event findByNamePromotion(String name){
+        return getEventsEntity().findByNamePromotions(name,getLocationsEntity(),getProductsEntity(),getCategoriesEntity(),getBusinessesEntity(),getInventoriesEntity());
     }
 
-    public Promotion findByStatePromotion(String status){
-        return getPromotionsEntity() .findByStatusPromotions(status,getLocationsEntity(),getProductsEntity(),getCategoriesEntity(),getBusinessesEntity(),getInventoriesEntity());
+    public Event findByStatePromotion(String status){
+        return getEventsEntity() .findByStatusPromotions(status,getLocationsEntity(),getProductsEntity(),getCategoriesEntity(),getBusinessesEntity(),getInventoriesEntity());
     }
 
-    public Promotion findByLocationPromo(int locationId){
-        return getPromotionsEntity().findByLocationsIdPromotions(locationId,getLocationsEntity(),getProductsEntity(),getCategoriesEntity(),getBusinessesEntity(),getInventoriesEntity());
+    public Event findByLocationPromo(int locationId){
+        return getEventsEntity().findByLocationsIdPromotions(locationId,getLocationsEntity(),getProductsEntity(),getCategoriesEntity(),getBusinessesEntity(),getInventoriesEntity());
     }
 
-    public Promotion findByProductPromo(int productsId){
-        return getPromotionsEntity().findByProductsIdPromotions(productsId,getLocationsEntity(),getProductsEntity(),getCategoriesEntity(),getBusinessesEntity(),getInventoriesEntity());
+    public Event findByProductPromo(int productsId){
+        return getEventsEntity().findByProductsIdPromotions(productsId,getLocationsEntity(),getProductsEntity(),getCategoriesEntity(),getBusinessesEntity(),getInventoriesEntity());
     }
 
-    public boolean createNewPromo(Promotion promotion){
-        return getPromotionsEntity().createPromotions(promotion);
+    public boolean createNewPromo(Event event){
+        return getEventsEntity().createPromotions(event);
     }
 
-    public boolean updatePromo(Promotion promotion){
-        return getPromotionsEntity().updatePromotions(promotion);
+    public boolean updatePromo(Event event){
+        return getEventsEntity().updatePromotions(event);
     }
 
-    public boolean changeStatusPromo(Promotion promotion){
-        return getPromotionsEntity().changeStatusPromotions(promotion);
+    public boolean changeStatusPromo(Event event){
+        return getEventsEntity().changeStatusPromotions(event);
     }
 
-    public boolean dropPromo(Promotion promotion){
-        return getPromotionsEntity().deletePromotion(promotion);
+    public boolean dropPromo(Event event){
+        return getEventsEntity().deletePromotion(event);
     }
 
     /**ProductsInventory**/
     public ProductsInventoriesEntity getProductsInventoriesEntity() {
         if(productsInventoriesEntity==null){
             productsInventoriesEntity=new ProductsInventoriesEntity();
-            promotionsEntity.setConnection(connection);
+            eventsEntity.setConnection(connection);
         }
         return productsInventoriesEntity;
     }

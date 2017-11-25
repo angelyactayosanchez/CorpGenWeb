@@ -3698,7 +3698,8 @@ a.bg-primary:focus, a.bg-primary:hover {
   background-color: #0062cc !important; }
 
 .bg-secondary {
-  background-color: #004EA3 !important; }
+  background-color: #004EA3 !important; 
+background-image: url("https://image.freepik.com/free-psd/abstract-background-design_1297-87.jpg")}
 
 a.bg-secondary:focus, a.bg-secondary:hover {
   background-color: #003670 !important; }
@@ -3740,7 +3741,9 @@ a.bg-dark:focus, a.bg-dark:hover {
   background-color: #1d2124 !important; }
 
 .bg-white {
-  background-color: #fff !important; }
+  background-color: #fff !important;
+  background-image: url("https://ak2.picdn.net/shutterstock/videos/5858735/thumb/1.jpg");
+}
 
 .bg-transparent {
   background-color: transparent !important; }

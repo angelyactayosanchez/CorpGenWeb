@@ -19,7 +19,7 @@ import java.util.List;
 public class LocationsController extends HttpServlet {
         CgbService service=new CgbService();
         String url;
-        public static String  LOCATION_INDEX_URI="paneLocations.jsp";
+        public static String  LOCATION_INDEX_URI="panelLocations.jsp";
 
     public LocationsController() {
         super();
@@ -38,19 +38,21 @@ public class LocationsController extends HttpServlet {
 
     private void processRequest(String method, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action=request.getParameter("action");
+        HttpSession session=request.getSession();
         if(method.equals("GET")){
 
             if(action.equals("index")){
-                HttpSession session=request.getSession();
+
+                String ruc=request.getParameter("ruc");
                 int idUser=(int)session.getAttribute("id");
-                String ruc=(String)session.getAttribute("ruc");
-                User user=service.getUserById(idUser);
-                request.setAttribute("user",user);
                 Business business=service.getBusinessByRUC(ruc);
                 request.setAttribute("business",business);
-                List<Location> locations=service.getLocationsByRuc(business.getRuc());
+
+                List<Location>  locations=service.getLocationsByRuc(ruc);
                 request.setAttribute("locations",locations);
-                url=LOCATION_INDEX_URI;
+
+                url="panelLocations.jsp";
+                request.getRequestDispatcher(url).forward(request,response);
             }
             if(action.equals("edit")){
                 int id=Integer.parseInt(request.getParameter("id"));
@@ -63,9 +65,6 @@ public class LocationsController extends HttpServlet {
                
             }
 
-        }
-        if(method.equals("POST")){
-            
         }
         request.getRequestDispatcher(url).forward(request,response);
     }

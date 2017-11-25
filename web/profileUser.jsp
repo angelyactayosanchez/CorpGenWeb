@@ -32,13 +32,16 @@
         <div class="collapse navbar-collapse text-center justify-content-end" id="navbar2SupportedContent">
             <ul class="navbar-nav">
                 <li class="nav-item active" id="Index">
-                    <a class="nav-link" href="users?action=index">Inicio</a>
+                <a class="nav-link" href="users?action=index">Inicio</a>
+            </li>
+                <li class="nav-item" id="Locations">
+                    <a class="nav-link" href="businesses?action=index">Negocios</a>
                 </li>
                 <li class="nav-item" id="Products">
-                    <a class="nav-link" href="#">Productos</a>
+                    <a class="nav-link" href="products?action=index">Productos</a>
                 </li>
                 <li class="nav-item" id="Promotions">
-                    <a class="nav-link" href="promotion?action=index">Promociones</a>
+                    <a class="nav-link" href="event?action=index">Eventos</a>
                 </li>
             </ul>
             <a class="btn navbar-btn ml-2 text-white btn-secondary" href="users?action=profile" id="UseProfile"> <i class="fa d-inline fa-lg fa-user-circle-o"></i>Hola ${sessionScope.name}&nbsp;</a>
@@ -53,31 +56,28 @@
                 <div class="card">
                     <div class="card-body text-justify py-5">
                         <h3 class="pb-3 text-center">Perfil de usuario </h3>
-                        <h4 class="pb-3">Estado :${sessionScope.statusID} </h4>
+                        <h4 class="pb-3" >Estado :${sessionScope.statusID} </h4>
+
                         <form action="users" method="post">
                             <div class="form-group"> <label>Nombres</label>
-                                <input class="form-control" placeholder="" id="firstName" name="firstName" type="text" value="${sessionScope.name}"> </div>
+                                <input class="form-control" placeholder="" id="firstName" name="firstName" type="text" value="${user.firstName}"> </div>
                             <div class="form-group"> <label>Apellidos</label>
-                                <input class="form-control" type="text" id="lastName" name="lastName" value="${sessionScope.name2}"> </div>
+                                <input class="form-control" type="text" id="lastName" name="lastName" value="${user.lastName}"> </div>
                             <div class="form-group"> <label>Direccion</label>
-                                <input type="text" class="form-control" placeholder="" id="address" name="address" value="${sessionScope.address}"> </div>
-                            <div class="form-group" draggable="true"><label class="form-control-label">Genero</label> <select class="form-control" name="gender" id="gender" >
-                                <option value="#" disabled="">Seleccione</option>
-                                <option value="1">Hombre</option>
-                                <option value="2">Mujer</option>
-
-                            </select>
-                            </div>
+                                <input type="text" class="form-control" placeholder="" id="address" name="address" value="${user.address}"> </div>
+                            <div class="form-group"> <label>Genero</label>
+                                <input type="text" class="form-control" placeholder="" id="gender" name="gender" value="${user.gender}"> </div>
                             <div class="form-group"> <label>Correo</label>
-                                <input type="email" class="form-control" placeholder="" name="email" value="${sessionScope.email}" disabled> </div>
+                                <input type="email" class="form-control" placeholder="" name="email" value="${user.email}" > </div>
                             <div class="form-group"> <label>Contraseña</label>
-                                <input type="password" class="form-control" placeholder="" name="password" value="${sessionScope.password}"> </div>
+                                <input type="password" class="form-control" placeholder="" name="password" value="${user.password}"> </div>
                             <div class="form-group"> <label>Telefono</label>
-                                <input type="text" class="form-control" placeholder="Fijo o movil" name="phone" value="${sessionScope.numPhone}"> </div>
-
+                                <input type="text" class="form-control" placeholder="Fijo o movil" name="phone" id="phone" value="${user.number_phone}"> </div>
+                        <div>
                             <input type="hidden" value="updateUser" name="action"/>
                             <button type="submit" class="btn mt-2 btn-block btn-outline-success" id="updateData">Actualizar datos</button>
-                            <button type="submit" class="btn mt-2 btn-block btn-outline-danger">Dar de baja</button>
+                        </div>
+
                         </form>
                     </div>
                 </div>

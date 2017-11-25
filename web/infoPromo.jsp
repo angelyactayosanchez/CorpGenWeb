@@ -1,11 +1,10 @@
 <%@ page import="models.User" %>
-<%@ page import="models.Business" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: root
-  Date: 23/11/17
-  Time: 13:55
+  Date: 24/11/17
+  Time: 12:57
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -15,15 +14,16 @@
     if(user==null){
         response.sendRedirect("index.jsp");
     }
-%>
+    // session.setAttribute("id",user.getId());
 
+%>
 <html>
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="css/estilo.css" type="text/css"> </head>
+    <link rel="stylesheet" href="https://pingendo.com/assets/bootstrap/bootstrap-4.0.0-beta.1.css" type="text/css"> </head>
 
 <body>
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" id="navSuperior">
@@ -31,15 +31,17 @@
     <div class="container-fluid">
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar2SupportedContent" aria-controls="navbar2SupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
         <div class="collapse navbar-collapse text-center justify-content-end" id="navbar2SupportedContent">
-            <ul class="navbar-nav">
-                <li class="nav-item active" id="Index">
-                    <a class="nav-link" href="users?action=index"/>">Inicio</a>
+            <ul class="navbar-nav"><li class="nav-item active" id="Index">
+                <a class="nav-link" href="users?action=index">Inicio</a>
+            </li>
+                <li class="nav-item" id="Locations">
+                    <a class="nav-link" href="businesses?action=index">Negocios</a>
                 </li>
                 <li class="nav-item" id="Products">
-                    <a class="nav-link" href="#">Productos</a>
+                    <a class="nav-link" href="products?action=index">Productos</a>
                 </li>
                 <li class="nav-item" id="Promotions">
-                    <a class="nav-link" href="promotion?action=index">Promociones</a>
+                    <a class="nav-link" href="event?action=index">Eventos</a>
                 </li>
             </ul>
             <a class="btn navbar-btn ml-2 text-white btn-secondary" href="users?action=profile" id="UseProfile"> <i class="fa d-inline fa-lg fa-user-circle-o"></i>Hola ${sessionScope.name}&nbsp;</a>
@@ -48,49 +50,35 @@
     </div>
 </nav>
 <div class="py-5"></div>
-<div class="py-5 bg-dark">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 my-3">
-                <h1 class="display-4 text-white text-md-left text-center"> Locales de: <c:out value="${business.name}"/> &nbsp;</h1>
-            </div>
-            <div class="col-md-4  text-center align-self-center">
-                <a href="<c:out value="${business.social}"/>" target="_blank"><i class="fa fa-fw fa-facebook fa-3x text-white mx-3" id="facebooPage"></i></a>
-                <a href="https://twitter.com/" target="_blank"><i class="fa fa-fw fa-twitter fa-3x text-white mx-3"></i></a>
-                <a href="https://www.instagram.com/" target="_blank"><i class="fa fa-fw fa-instagram fa-3x text-white mx-3"></i></a>
-            </div>
-        </div>
-    </div>
-</div>
 <div class="py-5">
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
-                <table class="table table-striped table-bordered" id="tableLocations">
-                    <thead>
-                    <tr>
-                        <th>Direccion</th>
-                        <th colspan="2">Horario</th>
-                        <th>Capacidad Máxima</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <c:forEach var="location" items="${locations}">
-                    <tr>
-                        <td><c:out value="${location.address}"/></td>
-                        <td><c:out value="${business.startTime}"/></td>
-                        <td><c:out value="${business.closeTime}"/></td>
-                        <td><c:out value="${business.maxCapacity}"/></td>
-                    </tr>
-                    </tbody>
-                    </c:forEach>
-                    </tbody>
-                </table>
+            <div class="col-md-3">
+                <a class="btn btn-primary text-white" href="event?action=index"><i class="fa fa-fw fa-arrow-left"></i>Regresar a promociones</a>
+            </div>
+        </div>
+        <div class="row"></div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 ml-auto py-5">
+                <div class="card">
+                    <div class="card-header text-center bg-dark text-white">ESTADO:  <c:out value="${event.state}"/>&nbsp;</div>
+                    <img class="img-fluid mx-auto" src="${event.img}" alt="Card image">
+                    <div class="card-body">
+                        <h2>${event.name}</h2>
+                        <h6 class="text-muted">Inicio : ${event.timeStart}</h6>
+                        <h6 class="text-muted">Fin : ${event.timeFinish}</h6>
+                        <p class=" p-y-1">Local: ${location.address}</p>
+                        <p class="p-y-1">${event.description}</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+    <div class="container"></div>
 </div>
-<div class="py-5 bg-dark text-white">
+<div class="bg-dark text-white py-5">
     <div class="container">
         <div class="row">
             <div class="col-md-12 mt-3 text-center">

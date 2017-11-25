@@ -67,7 +67,7 @@ public class OrdersController extends HttpServlet {
                 int createdBy=Integer.parseInt(request.getParameter("createdBy"));
                 String updatedAt=request.getParameter("updatedAt");
                 int updatedBy=Integer.parseInt(request.getParameter("updatedBy"));
-                Order order=service.createOrder(state,createdAt,user.setCreatedBy(createdBy),updatedAt,user.setUpdatedBy(updatedBy));
+               // Order order=service.createOrder(state,createdAt,user.setCreatedBy(createdBy),updatedAt,user.setUpdatedBy(updatedBy));
                 url="index1.jsp";
             }
             if(action.equals("delete")){

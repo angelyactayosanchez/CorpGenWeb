@@ -2,6 +2,7 @@ package controllers;
 
 import models.Category;
 import models.Product;
+import models.User;
 import services.CgbService;
 
 import javax.servlet.ServletException;
@@ -9,8 +10,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
-@WebServlet(name = "ProductsController",urlPatterns = "/product")
+import java.util.List;
+
+@WebServlet(name = "ProductsController",urlPatterns = "/products")
 public class ProductsController extends HttpServlet {
     CgbService service=new CgbService();
     String url;
@@ -41,8 +45,29 @@ public class ProductsController extends HttpServlet {
                 request.setAttribute("product",product);
 
             }
-            if(action.equals("add")){
-                request.setAttribute("action","add");
+            if(action.equals("info")){
+
+               // request.setAttribute("action","add");
+                HttpSession session=request.getSession();
+                int id=(int)session.getAttribute("id");
+                int idProduct=Integer.parseInt(request.getParameter("id"));
+
+                Product product=service.getProductById(idProduct);
+                request.setAttribute("product",product);
+                Category category=service.getCategoryById(product.getCategory().getId());
+                request.setAttribute("category",category);
+                url="showProductInfo.jsp";
+
+            }
+            if(action.equals("index")){
+                HttpSession session=request.getSession();
+                int id=(int)session.getAttribute("id");
+                User user=service.getUserById(id);
+                request.setAttribute("user",user);
+                List<Product> products=service.getAllProducts();
+                request.setAttribute("products",products);
+                url="panelProducts.jsp";
+
             }
 
         }

@@ -12,7 +12,18 @@ public class Product {
     private int score;
     private Category category;
 
-    public Product(int id, String name, String brand, double price, String description, int score, Category category) {
+    public String getImage() {
+        return image;
+    }
+
+    public Product setImage(String image) {
+        this.image = image;
+        return this;
+    }
+
+    private String image;
+
+    public Product(int id, String name, String brand, double price, String description, int score, Category category,String image) {
         this.id = id;
         this.name = name;
         this.brand = brand;
@@ -20,6 +31,7 @@ public class Product {
         this.description = description;
         this.score = score;
         this.category = category;
+        this.image=image;
     }
 
     public Product() {
@@ -34,7 +46,8 @@ public class Product {
                     rs.getDouble("price"),
                     rs.getString("description"),
                     rs.getInt("score"),
-                    categoriesEntity.findById(rs.getInt("categories_id")));
+                    categoriesEntity.findById(rs.getInt("categories_id"))
+                    ,rs.getString("img"));
         }catch (SQLException e){
             e.printStackTrace();
         }

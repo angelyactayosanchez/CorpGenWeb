@@ -19,8 +19,9 @@ public class ProductsEntity extends BaseEntity {
             List<Product> products=new ArrayList<>();
             while (rs.next()){
                 products.add(Product.from(rs,categoriesEntity));
-                return products;
+
             }
+            return products;
         }catch (SQLException e){
             e.printStackTrace();
         }
@@ -65,14 +66,14 @@ public class ProductsEntity extends BaseEntity {
 
     public boolean insertProduct(Product product){
 
-        return executeUpdate(String.format("insert into '%s' (id,name,brand,price,description,score,categories_id)" +
-                " values('%s','%s',%d,'%s',%d,%d)",
+        return executeUpdate(String.format("insert into '%s' (id,name,brand,price,description,score,categories_id,img)" +
+                " values('%s','%s',%d,'%s',%d,%d,'%s')",
                 getTableName(), product.getId(), product.getName(), product.getBrand(), product.getPrice()
                 , product.getDescription(), product.getScore(), product.getCategory().getId()));
     }
 
-    public boolean insertProduct(int id, String name, String brand, double price, String description,int score, Category category){
-        return insertProduct(new Product(getMaxId()+1,name,brand,price,description,score, category));
+    public boolean insertProduct(int id, String name, String brand, double price, String description,int score, Category category,String image){
+        return insertProduct(new Product(getMaxId()+1,name,brand,price,description,score, category,image));
     }
 
     public  boolean changeProduct(Product product){

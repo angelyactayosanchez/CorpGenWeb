@@ -45,70 +45,45 @@ public class UsersEntity extends BaseEntity {
     }
 
     public User findByLastName(String lastName, StatusEntity statusEntity){
-        return findByCriteria(String.format("  where last_name = '%s'",lastName),statusEntity).get(0);
+        return findByCriteria(String.format("  WHERE last_name = '%s'",lastName),statusEntity).get(0);
     }
 
     public User findByManagerId(int manager, StatusEntity statusEntity){
         return findByCriteria(String.format(" where  manager = %d",manager),statusEntity).get(0);
     }
 
-
-/*    public List<User> findStatusUser(int id,StatusEntity statusEntity){
-        String sql="SELECT u.first_name,u.last_name,u.email,s.type\n" +
-                "FROM users u JOIN status s WHERE u.status_id="+id;
-        List<User> users=new ArrayList<>();try {
-            ResultSet rs=getConnection().createStatement().executeQuery(sql);
-            if(rs==null)return null;
-            while (rs.next()){
-                users.add(User.from(rs,statusEntity));
-                return users;
-            }
-
-        }catch (SQLException e){
-            e.printStackTrace();
-        }
-        return users;
-    }
-*/
-
     /**DML**/
 
     public  boolean createAdminUsers(User user){
-        return executeUpdate(String.format("insert into %s (" +
-                        "firstName,lastName,password,gender,address,number_phone,email,status_id,created_at,created_by,updated_at,updated_by)" +
-                        " values('%s','%s','%s',%d,'%s','%s','%s',%d,'%s',%d,'%s',%d)",
-                user.getFirtName(), user.getLastName(), user.getPassword(), user.getGender(), user.getAddress(),
-                user.getNumber_phone(), user.getEmail(), user.getStatus().getId(), user.getCreatedAt(), user.getCreatedBy(), user.getUpdatedAt(), user.getUpdatedBy()));
+        return executeUpdate(String.format("INSERT INTO  %s (firstName,lastName,password,gender,address,number_phone,email,status_id,created_at,created_by,updated_at,updated_by)" +
+                        " values('%s','%s','%s','%s','%s','%s','%s',%d,'%s',%d,'%s',%d)",getTableName(),
+                user.getFirstName(), user.getLastName(), user.getPassword(), user.getGender(), user.getAddress(),
+                user.getNumber_phone(), user.getEmail(), user.getStatus().getId()));
     }
 
     public  boolean createAdminUsers2(User user){
         return executeUpdate(String.format("insert into %s (" +
                         "firstName,lastName,password,gender,address,number_phone,email,status_id,created_at,created_by,updated_at,updated_by)" +
-                        " values('%s','%s','%s',%d,'%s','%s','%s',%d,'%s',%d,'%s',%d)",
-                user.getFirtName(), user.getLastName(), user.getPassword(), user.getGender(), user.getAddress(),
-                user.getNumber_phone(), user.getEmail(), user.getManager(), user.getCreatedAt(), user.getCreatedBy(), user.getUpdatedAt(), user.getUpdatedBy()));
+                        " values('%s','%s','%s','%s','%s','%s','%s',%d,'%s',%d,'%s',%d)",
+                user.getFirstName(), user.getLastName(), user.getPassword(), user.getGender(), user.getAddress(),
+                user.getNumber_phone(), user.getEmail(), user.getManager()));
     }
 
 
     public boolean createNormalUsers(User user){
-        return executeUpdate(String.format("INSERT INTO %s(first_name, last_name, password, gender, address, email, status_id) " +
-                        "VALUES ('%s','%s','%s',%d,'%s','%s',%d)",getTableName(),user.getFirtName(), user.getLastName(), user.getPassword(), user.getGender(), user.getAddress(),
+        return executeUpdate(String.format("INSERT INTO %s (id,first_name, last_name, password, gender, address, email, status_id) " +
+                        "VALUES (%d,'%s','%s','%s','%s','%s','%s',%d)",getTableName(),getMaxId(getTableName())+1,user.getFirstName(), user.getLastName(), user.getPassword(), user.getGender(), user.getAddress(),
                  user.getEmail(), user.getStatus().getId()));
     }
 
     public boolean updateAttributesUser(User user){
-            return executeUpdate(String.format("update %s set firstName='%s',lastName='%s'" +
-                    " ,password='%s' ,gender=%d,address='%s',number_phone='%s' where id=%d",getTableName(),
-                    user.getFirtName(), user.getLastName(), user.getGender(), user.getAddress(), user.getNumber_phone(), user.getId()));
+            return executeUpdate(String.format("UPDATE %s SET first_name='%s',last_name='%s' ,password='%s',address='%s',number_phone='%s' WHERE id=%d",getTableName(),
+                    user.getFirstName(), user.getLastName(),user.getPassword(),user.getAddress(), user.getNumber_phone(), user.getId()));
 
     }
-/*
-    public boolean changeStatusUser(User user,StatusEntity statusEntity){
-        return executeUpdate(String.format("update '%s' set status=%d where id=%d",getTableName(),user.getStatus().getId()));
-    }
-*/
+
     public boolean changeStatusUser(User user){
-        return executeUpdate(String.format("update %s set status=%d where id=%d",getTableName(), user.getStatus().getId(), user.getId()));
+        return executeUpdate(String.format("UPDATE %s set status=%d where id=%d",getTableName(), user.getStatus().getId(), user.getId()));
     }
 
     public boolean changePermissionsUser(User user){
@@ -117,7 +92,7 @@ public class UsersEntity extends BaseEntity {
 
 
     public  boolean deleteUsers(User user){
-        return executeUpdate(String.format("delete from '%s' where id=%d",getTableName(), user.getId()));
+        return executeUpdate(String.format("delete from %s where id=%d",getTableName(), user.getId()));
     }
 
     private Connection conn = null;

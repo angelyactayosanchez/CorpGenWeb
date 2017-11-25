@@ -3,7 +3,7 @@ package models;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class Promotion {
+public class Event {
 
     private int id;
     private String name;
@@ -13,21 +13,32 @@ public class Promotion {
     private Location location;
     private Product product;
 
+    public String getDescription() {
+        return description;
+    }
+
+    public Event setDescription(String description) {
+        this.description = description;
+        return this;
+    }
+
+    private String description;
+
     public String getImg() {
         return img;
     }
 
-    public Promotion setImg(String img) {
+    public Event setImg(String img) {
         this.img = img;
         return this;
     }
 
     private String img;
 
-    public Promotion() {
+    public Event() {
     }
 
-    public Promotion(int id, String name, String state, String timeStart, String timeFinish, Location location, Product product,String img) {
+    public Event(int id, String name, String state, String timeStart, String timeFinish, Location location, Product product, String img, String description) {
         this.id = id;
         this.name = name;
         this.state = state;
@@ -36,6 +47,7 @@ public class Promotion {
         this.location = location;
         this.product = product;
         this.img=img;
+        this.description=description;
     }
 
 
@@ -44,7 +56,7 @@ public class Promotion {
         return id;
     }
 
-    public Promotion setId(int id) {
+    public Event setId(int id) {
         this.id = id;
         return this;
     }
@@ -53,7 +65,7 @@ public class Promotion {
         return name;
     }
 
-    public Promotion setName(String name) {
+    public Event setName(String name) {
         this.name = name;
         return this;
     }
@@ -62,7 +74,7 @@ public class Promotion {
         return state;
     }
 
-    public Promotion setState(String state) {
+    public Event setState(String state) {
         this.state = state;
         return this;
     }
@@ -71,7 +83,7 @@ public class Promotion {
         return timeStart;
     }
 
-    public Promotion setTimeStart(String timeStart) {
+    public Event setTimeStart(String timeStart) {
         this.timeStart = timeStart;
         return this;
     }
@@ -80,7 +92,7 @@ public class Promotion {
         return timeFinish;
     }
 
-    public Promotion setTimeFinish(String timeFinish) {
+    public Event setTimeFinish(String timeFinish) {
         this.timeFinish = timeFinish;
         return this;
     }
@@ -89,7 +101,7 @@ public class Promotion {
         return location;
     }
 
-    public Promotion setLocation(Location location) {
+    public Event setLocation(Location location) {
         this.location = location;
         return this;
     }
@@ -98,21 +110,23 @@ public class Promotion {
         return product;
     }
 
-    public Promotion setProduct(Product product) {
+    public Event setProduct(Product product) {
         this.product = product;
         return this;
     }
 
-    public static Promotion from(ResultSet rs, LocationsEntity locationsEntity, ProductsEntity productsEntity, CategoriesEntity categoriesEntity, BusinessesEntity businessesEntity, InventoriesEntity inventoriesEntity){
+    public static Event from(ResultSet rs, LocationsEntity locationsEntity, ProductsEntity productsEntity, CategoriesEntity categoriesEntity, BusinessesEntity businessesEntity, InventoriesEntity inventoriesEntity){
         try {
-            return new Promotion(
+            return new Event(
                         rs.getInt("id"),
                     rs.getString("name"),
                     rs.getString("state"),
                     rs.getString("time_start"),
                     rs.getString("time_finish"),
                     locationsEntity.findById(rs.getInt("locations_id"), businessesEntity,inventoriesEntity),
-                    productsEntity.findById(rs.getInt("products_id"),categoriesEntity),rs.getString("image"));
+                    productsEntity.findById(rs.getInt("products_id"),
+                            categoriesEntity),rs.getString("image"),
+                    rs.getString("description"));
         }catch (SQLException e){
             e.printStackTrace();
         }

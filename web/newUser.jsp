@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="css/estiloNewUser.css" type="text/css"> </head>
 
 <body>
-<div class="py-5" style="background-image: url(&quot;https://pingendo.github.io/templates/sections/assets/form_red.jpg&quot;);">
+<div class="py-5" style="background-image: url(images/backgroundForm.jpg);">
     <div class="container">
         <div class="row">
             <div class="align-self-center col-md-6 text-white">
@@ -28,15 +28,15 @@
                         <h3 class="pb-3">Crear una nueva cuenta</h3>
                         <form method="post" action="users">
                             <div class="form-group"> <label>Nombres</label>
-                                <input class="form-control" placeholder="Your name, please" id="firtName" name="firtName" required> </div>
+                                <input class="form-control" placeholder="Your name, please" id="firstName" name="firstName" required> </div>
                             <div class="form-group"> <label>Apellidos</label>
                                 <input class="form-control" type="text" id="lastName"  name="lastName"> </div>
                             <div class="form-group"> <label>Direccion</label>
                                 <input type="text" class="form-control" placeholder="" id="address" name="address"> </div>
                             <div class="form-group"><label class="form-control-label">Genero</label> <select class="form-control" name="gender" id="gender">
-                                <option value="0"  >Seleccione</option>
-                                <option value="1">Hombre</option>
-                                <option value="2">Mujer</option>
+                                <option value="#"  >Seleccione</option>
+                                <option value="Hombre">Hombre</option>
+                                <option value="Mujer">Mujer</option>
                             </select>
                             </div>
                             <div class="form-group"> <label>Correo</label>

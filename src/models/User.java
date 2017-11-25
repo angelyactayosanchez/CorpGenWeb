@@ -6,10 +6,10 @@ import java.sql.SQLException;
 public class User {
 
     private int id;
-    private String firtName;
+    private String firstName;
     private String lastName;
     private String password;
-    private int gender;
+    private String gender;
     private String address;
     private String number_phone;
     private String email;
@@ -35,9 +35,9 @@ public class User {
 
     }
 
-    public User(int id, String firtName, String lastName, String password, int gender, String address, String number_phone, String email, Status status, int createdBy, int updatedBy, String createdAt, String updatedAt, int manager) {
+    public User(int id, String firstName, String lastName, String password, String gender, String address, String number_phone, String email, Status status, int createdBy, int updatedBy, String createdAt, String updatedAt, int manager) {
         this.id = id;
-        this.firtName = firtName;
+        this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
         this.gender = gender;
@@ -51,9 +51,9 @@ public class User {
         this.updatedAt = updatedAt;
     }
 
-    public User(int id, String firtName, String lastName, String password, int gender, String address, String number_phone, String email, Status status) {
+    public User(int id, String firstName, String lastName, String password, String gender, String address, String number_phone, String email, Status status) {
         this.id = id;
-        this.firtName = firtName;
+        this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
         this.gender = gender;
@@ -76,10 +76,10 @@ public class User {
         try {
             return (new User())
                     .setId(rs.getInt("id"))
-                    .setFirtName(rs.getString("first_name"))
+                    .setFirstName(rs.getString("first_name"))
                     .setLastName(rs.getString("last_name"))
                     .setPassword(rs.getString("password"))
-                    .setGender(rs.getInt("gender"))
+                    .setGender(rs.getString("gender"))
                     .setAddress(rs.getString("address"))
                     .setNumber_phone(rs.getString("number_phone"))
                     .setEmail(rs.getString("email"))
@@ -101,7 +101,7 @@ public class User {
                     rs.getString("first_name"),
                     rs.getString("last_name"),
                     rs.getString("password"),
-                    rs.getInt("gender"),
+                    rs.getString("gender"),
                     rs.getString("address"),
                     rs.getString("number_phone"),
                     rs.getString("email"),
@@ -124,12 +124,12 @@ public class User {
         return this;
     }
 
-    public String getFirtName() {
-        return firtName;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public User setFirtName(String firtName) {
-        this.firtName = firtName;
+    public User setFirstName(String firstName) {
+        this.firstName = firstName;
         return this;
     }
 
@@ -151,11 +151,11 @@ public class User {
         return this;
     }
 
-    public int getGender() {
+    public String getGender() {
         return gender;
     }
 
-    public User setGender(int gender) {
+    public User setGender(String gender) {
         this.gender = gender;
         return this;
     }

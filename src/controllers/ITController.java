@@ -57,9 +57,9 @@ public class ITController extends HttpServlet {
                 User user=new User();
                 transaccion.setStatus(request.getParameter("status"));
                 transaccion.setCreatedAt(request.getParameter("createdAt"));
-                transaccion.setCreatedBy(user.setCreatedBy(Integer.parseInt(request.getParameter("userId"))));
+                //transaccion.setCreatedBy(user.setCreatedBy(Integer.parseInt(request.getParameter("userId"))));
                 transaccion.setUpdatedAt(request.getParameter("updatedAt"));
-                transaccion.setUpdatedBy(user.setUpdatedBy(Integer.parseInt(request.getParameter("updateByID"))));
+                //transaccion.setUpdatedBy(user.setUpdatedBy(Integer.parseInt(request.getParameter("updateByID"))));
                 String msg=service.createInvTransaccion(transaccion)?"Creado con exito":"Hubo un error";
                 log(msg);
 

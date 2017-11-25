@@ -18,10 +18,11 @@ public class LocationsEntity extends BaseEntity {
         try {
             ResultSet rs=getConnection().createStatement().executeQuery(getBaseStatement().concat(criteria));
             List<Location> locations=new ArrayList<>();
-            while (rs.next()){
-                locations.add(Location.from(rs, businessesEntity,inventoriesEntity));
-                return locations;
+            while(rs.next()){
+                locations.add(Location.from(rs,businessesEntity,inventoriesEntity));
+
             }
+            return locations;
         }catch (SQLException e){
             e.printStackTrace();
         }
@@ -32,7 +33,7 @@ public class LocationsEntity extends BaseEntity {
         return findByCriteria("", businessesEntity,inventoriesEntity);
     }
     public List<Location> findLocationsByRuc(String ruc, BusinessesEntity businessesEntity, InventoriesEntity inventoriesEntity){
-        return findByCriteria(String.format("where ruc='%s'",ruc),businessesEntity,inventoriesEntity);
+        return findByCriteria(String.format("WHERE business_ruc='%s'",ruc),businessesEntity,inventoriesEntity);
     }
 
 

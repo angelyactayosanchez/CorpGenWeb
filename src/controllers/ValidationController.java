@@ -1,9 +1,7 @@
 package controllers;
 
-import models.StatusEntity;
 import models.User;
 import models.UsersEntity;
-import org.omg.CORBA.PUBLIC_MEMBER;
 import services.CgbService;
 
 import javax.servlet.RequestDispatcher;
@@ -17,13 +15,12 @@ import java.io.IOException;
 
 @WebServlet(name = "ValidationController",urlPatterns = "/validation")
 public class ValidationController extends HttpServlet {
-    CgbService service=new CgbService();
-    String url="";
-    public static String LOGINSUCESS="homeUser.jsp";
-    public static String WELCOME_USER="WelcomeUser.jsp";
-    public static String INDEX="index.jsp";
-    public static String LOGIN="login.jsp";
-
+    CgbService service = new CgbService();
+    String url = "";
+    public static String LOGINSUCESS = "homeUser.jsp";
+    public static String WELCOME_USER = "WelcomeUser.jsp";
+    public static String INDEX = "index.jsp";
+    public static String LOGIN = "login.jsp";
 
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -48,7 +45,7 @@ public class ValidationController extends HttpServlet {
                 session.setAttribute("usuario",user1);
                 session.setAttribute("id",user1.getId());
                 session.setAttribute("password",user1.getPassword());
-                session.setAttribute("name",user1.getFirtName());
+                session.setAttribute("name",user1.getFirstName());
                 session.setAttribute("name2",user1.getLastName());
                 session.setAttribute("address",user1.getAddress());
                 session.setAttribute("numPhone",user1.getNumber_phone());
@@ -90,15 +87,9 @@ public class ValidationController extends HttpServlet {
                 request.setAttribute("validation",validation);
                 url="login.jsp";
 
-            }
-        }else if (u.validate(user,password)==false){
-            request.setAttribute("validation",validation);
-            url="login.jsp";
-            log("No hay datos");
+            }*/
         }
 
-        request.getRequestDispatcher(url).forward(request,response);
-     }/**/
     }
-}
+
 

@@ -40,7 +40,7 @@ public class BaseEntity {
     }
 
     public String getBaseStatement() {
-        return "SELECT * FROM ".concat(tableName).concat(" ");
+        return " SELECT * FROM ".concat(tableName).concat(" ");
     }
 
     public boolean executeUpdate(String sql) {

@@ -1,6 +1,5 @@
 package controllers;
 
-import jdk.nashorn.internal.objects.AccessorPropertyDescriptor;
 import models.Status;
 import models.User;
 import services.CgbService;
@@ -48,7 +47,9 @@ public class UsersController extends HttpServlet {
             if(action.equals("profile")){
                 HttpSession session=request.getSession();
                 int id=(int)session.getAttribute("id");
+
                 User user=service.getUserById(id);
+
                 request.setAttribute("user",user);
                 url="profileUser.jsp";
             }
@@ -67,10 +68,10 @@ public class UsersController extends HttpServlet {
 
                 User user=new User();
                 Status status=new Status();
-                user.setFirtName(new String(request.getParameter("firstName").getBytes("ISO-8859-1"),"UTF-8"));
+                user.setFirstName(new String(request.getParameter("firstName").getBytes("ISO-8859-1"),"UTF-8"));
                 user.setLastName(new String(request.getParameter("lastName").getBytes("ISO-8859-1"),"UTF-8"));
                 user.setPassword(new String(request.getParameter("password").getBytes("ISO-8859-1"),"UTF-8"));
-                user.setGender(Integer.parseInt(new String(request.getParameter("gender").getBytes("ISO-8859-1"),"UTF-8")));
+                user.setGender(new String(request.getParameter("gender").getBytes("ISO-8859-1"),"UTF-8"));
                 user.setAddress(new String(request.getParameter("address").getBytes("ISO-8859-1"),"UTF-8"));
                 user.setNumber_phone(request.getParameter("phone"));
                 user.setEmail(new String(request.getParameter("email").getBytes("ISO-8859-1"),"UTF-8"));
@@ -91,16 +92,31 @@ public class UsersController extends HttpServlet {
             if(action.equals("updateUser")){
                 HttpSession session=request.getSession();
                 int id=(int)session.getAttribute("id");
-                User user=service.getUserById(id);
-                user.setFirtName(request.getParameter("firstName"));
+                User user=new User();
+                user.setId(id);
+                user.setFirstName(request.getParameter("firstName"));
                 user.setLastName(request.getParameter("lastName"));
                 user.setPassword(request.getParameter("password"));
-                user.setGender(Integer.parseInt(request.getParameter("gender")));
+                user.setGender(request.getParameter("gender"));
                 user.setAddress(request.getParameter("address"));
+                user.setPassword(request.getParameter("password"));
+                user.setEmail(request.getParameter("email"));
                 user.setNumber_phone(request.getParameter("phone"));
                 String msg=service.updateUser(user)?"Datos Actualizados":"Ocurrio un error";
                 log(msg);
+                request.setAttribute("user",user);
                 url="profileUser.jsp";
+            }
+            if(action.equals("drop")){
+                HttpSession session=request.getSession();
+                int id=(int)session.getAttribute("id");
+
+                User user=service.getUserById(id);
+
+                String msg=service.deleteUser(user)?"Eliminado":"Ocurrio un problema";
+                log(msg);
+                session.invalidate();
+                url="index.jsp";
             }
 
         }

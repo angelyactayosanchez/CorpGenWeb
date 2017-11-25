@@ -10,6 +10,21 @@ public class Location {
     private String startTime;
     private String closeTime;
 
+    private String address;
+    private Business business;
+    private Inventory inventory;
+
+    public Location(int id, int actualCapacity, int maxCapacity, String startTime, String closeTime, Business business, Inventory inventory, String address) {
+        this.id = id;
+        this.actualCapacity = actualCapacity;
+        this.maxCapacity = maxCapacity;
+        this.startTime = startTime;
+        this.closeTime = closeTime;
+        this.address = address;
+        this.business = business;
+        this.inventory = inventory;
+    }
+
     public String getAddress() {
         return address;
     }
@@ -19,22 +34,8 @@ public class Location {
         return this;
     }
 
-    private String address;
-    private Business business;
-    private Inventory inventory;
 
     public Location() {
-    }
-
-    public Location(int id, int actualCapacity, int maxCapacity, String startTime, String closeTime, Business business, Inventory inventory, String address) {
-        this.setId(id);
-        this.setActualCapacity(actualCapacity);
-        this.setMaxCapacity(maxCapacity);
-        this.setStartTime(startTime);
-        this.setCloseTime(closeTime);
-        this.setBusiness(business);
-        this.setInventory(inventory);
-        this.setAddress(address);
     }
 
     public static Location from(ResultSet rs, BusinessesEntity businessesEntity, InventoriesEntity inventoriesEntity){

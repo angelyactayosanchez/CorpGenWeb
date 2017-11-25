@@ -166,7 +166,8 @@ public class CgbService {
 
     public User getUserByFirstName(String firstName){return getDataStore().findByFirstName(firstName);}
 
-    public User getUserByValidation(String email,String password){return getDataStore().findByEmainPass(email,password);}
+    public User getUserByValidation(String email,String password){return getDataStore().findByEmailPass(email,password);}
+
     public User getUserByLastName(String lastName){
         return getDataStore().findByLastName(lastName);
     }
@@ -275,40 +276,40 @@ public class CgbService {
         return getDataStore().commitOrder(order);
     }
 
-    /**Promotion**/
-    public List<Promotion> getAllPromotions(){
-        return getDataStore().findAllPromotions();
+    /**Event**/
+    public List<Event> getAllEvents(){
+        return getDataStore().findAllEvents();
     }
 
-    public Promotion getPromotionById(int id){
+    public Event getPromotionById(int id){
         return getDataStore().findByIdPromotion(id);
     }
 
-    public Promotion getPromotionByName(String name){
+    public Event getPromotionByName(String name){
         return getDataStore().findByNamePromotion(name);
     }
 
-    public Promotion getPromotionByState(String status){
+    public Event getPromotionByState(String status){
         return getDataStore().findByStatePromotion(status);
     }
 
-    public Promotion getPromotionByLocation(int locationId){
+    public Event getPromotionByLocation(int locationId){
         return getDataStore().findByLocationPromo(locationId);
     }
 
-    public Promotion getPromotionByProduct(int productsId){
+    public Event getPromotionByProduct(int productsId){
         return getDataStore().findByProductPromo(productsId);
     }
 
-    public boolean createPromotion(Promotion promotion){  return getDataStore().createNewPromo(promotion); }
+    public boolean createPromotion(Event event){  return getDataStore().createNewPromo(event); }
 
-    public boolean updatePromotion(Promotion promotion){
-        return getDataStore().updatePromo(promotion);
+    public boolean updatePromotion(Event event){
+        return getDataStore().updatePromo(event);
     }
 
-    public boolean changeStatusPromo(Promotion promotion){return getDataStore().changeStatusPromo(promotion); }
+    public boolean changeStatusPromo(Event event){return getDataStore().changeStatusPromo(event); }
 
-    public boolean deletePromo(Promotion promotion){return getDataStore().dropPromo(promotion); }
+    public boolean deletePromo(Event event){return getDataStore().dropPromo(event); }
 
     /**ProductsInventory**/
 
